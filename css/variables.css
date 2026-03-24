@@ -1,0 +1,55 @@
+/* SAM'S CLUB REDESIGN — DESIGN TOKENS */
+:root {
+  --sams-blue: #0067a0;
+  --sams-dark: #003b73;
+  --sams-hover: #005a8c;
+  --sams-yellow: #f5a623;
+  --sams-green: #2e7d32;
+  --sams-red: #d32f2f;
+  --bg: #ffffff;
+  --bg-gray: #f5f5f5;
+  --bg-card: #ffffff;
+  --text: #1a1a1a;
+  --text-2: #555555;
+  --text-3: #888888;
+  --border: #d9d9d9;
+  --border-light: #eeeeee;
+  --shadow: rgba(0,0,0,0.06);
+  --shadow-md: rgba(0,0,0,0.12);
+  --overlay: rgba(0,0,0,0.45);
+  --header-bg: #0067a0;
+  --announce-bg: #003b73;
+  --secondary-bg: #eaf1f6;
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --mono: 'Roboto Mono', monospace;
+  --max-w: 1320px;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-full: 9999px;
+  --ease: 200ms ease;
+  --ease-slow: 350ms cubic-bezier(0.4,0,0.2,1);
+  --ease-bounce: 400ms cubic-bezier(0.34,1.56,0.64,1);
+  --bottom-h: 56px;
+}
+[data-theme="dark"] {
+  --bg: #121212; --bg-gray: #1a1a1a; --bg-card: #1e1e1e;
+  --text: #e0e0e0; --text-2: #aaa; --text-3: #666;
+  --border: #333; --border-light: #2a2a2a;
+  --shadow: rgba(0,0,0,0.3); --shadow-md: rgba(0,0,0,0.4);
+  --overlay: rgba(0,0,0,0.7);
+  --header-bg: #0a1f33; --announce-bg: #060e18; --secondary-bg: #151f2a;
+  --sams-blue: #3a9fd8; --sams-hover: #5bb4e3;
+}
+[data-contrast="high"] { --text: #000; --border: #000; }
+[data-theme="dark"][data-contrast="high"] { --text: #fff; --border: #fff; --bg: #000; --bg-card: #0a0a0a; }
+[data-grayscale="true"] { filter: grayscale(1); }
+[data-font-scale="90"]  { font-size: 90%; }
+[data-font-scale="110"] { font-size: 110%; }
+[data-font-scale="120"] { font-size: 120%; }
+[data-font-scale="130"] { font-size: 130%; }
+[data-font-scale="150"] { font-size: 150%; }
+[data-spacing="wide"]  { letter-spacing: 0.04em; word-spacing: 0.08em; }
+[data-spacing="wider"] { letter-spacing: 0.08em; word-spacing: 0.16em; }
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; }
+}

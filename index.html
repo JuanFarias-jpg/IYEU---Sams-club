@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-font-scale="100" data-spacing="normal">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sam's Club México </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Saltar al contenido principal</a>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar">
+  ¡Aprovecha! Hasta 30% en Vinos y Licores Del 13 al 19 de marzo 2026
+  <a href="#">Ver más ></a>
+</div>
+
+<!--  HEADER  -->
+<header class="header">
+  <div class="header-inner">
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </button>
+
+    <a href="index.html" class="logo" aria-label="Sam's Club inicio">
+      <span class="logo-text">sam's club</span>
+      <span class="logo-bracket">&lt;&gt;</span>
+    </a>
+
+    <nav class="header-nav">
+      <a href="#" class="header-nav__link">
+        <svg viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+        Departamentos
+      </a>
+      <a href="#" class="header-nav__link">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        Beneficios
+      </a>
+    </nav>
+
+    <div class="search-wrap" role="search">
+      <input type="search" placeholder="Buscar en Sam's Club en línea o en tienda" aria-label="Buscar productos">
+      <button class="search-btn" aria-label="Buscar">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      </button>
+    </div>
+
+    <div class="header-actions">
+      <a href="#" class="h-action" aria-label="Tus productos">
+        <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>
+        <span class="h-action__label">Vuelve a pedirlos</span>
+        <span class="h-action__sub">Tus productos</span>
+      </a>
+      <a href="pages/login.html" class="h-action" aria-label="Cuenta">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        <span class="h-action__label">Iniciar sesión</span>
+        <span class="h-action__sub">Cuenta</span>
+      </a>
+      <a href="pages/carrito.html" class="h-action" aria-label="Carrito" style="position:relative">
+        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        <span class="cart-badge">0</span>
+      </a>
+      <button class="h-action" onclick="toggleTheme()" aria-label="Cambiar tema">
+        <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== SECONDARY BAR ===== -->
+<div class="secondary-bar">
+  <div class="secondary-inner">
+    <div class="sec-left">
+      <a href="#">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Monterrey, 64349
+      </a>
+      <span>Sam's Club Cumbres, Mty</span>
+    </div>
+    <div class="sec-links">
+      <a href="#">Cuponera</a>
+      <a href="#">Hazte Socio</a>
+      <a href="#">Ayuda</a>
+      <a href="#">Socio de Negocio</a>
+      <a href="#">Member's Mark</a>
+      <a href="#">Facturar</a>
+      <a href="#">Encuentra tu Club</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<main id="main">
+
+  <!-- ===== SOCIOFEST BANNER (static, like original) ===== -->
+  <div style="padding:16px 16px 0;">
+    <div style="max-width:var(--max-w);margin:0 auto;">
+      <div class="promo-banner" style="background:#0067a0;">
+        <div class="promo-banner__content" style="padding:28px 24px;">
+          <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;opacity:.85;">SOCIOFEST</div>
+          <div style="font-size:1.1rem;font-weight:800;text-transform:uppercase;margin-bottom:4px;">¡Ya casi termina!</div>
+          <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+            <div><span style="font-size:0.75rem;">Hasta</span> <span style="font-size:2.5rem;font-weight:900;">40%</span></div>
+            <span style="font-size:1.5rem;font-weight:300;">+</span>
+            <div><span style="font-size:0.75rem;">Hasta</span> <span style="font-size:1.75rem;font-weight:800;">18 MSI</span><div style="font-size:0.6875rem;opacity:.8;">con bancos participantes</div></div>
+            <span style="font-size:1.5rem;font-weight:300;">+</span>
+            <div><span style="font-size:1.75rem;font-weight:800;">2%</span><div style="font-size:0.6875rem;opacity:.8;">de recompensa con tu membresía</div></div>
+          </div>
+          <div style="font-size:0.6875rem;opacity:.7;margin-top:10px;">Del 13 al 19 de marzo de 2026. *TyC https://PromocionesSams</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CATEGORY DISCOUNT CARDS (¡Ahorra más con Sam's!) ===== -->
+  <section class="section" style="padding-top:24px;padding-bottom:16px;">
+    <div class="container">
+      <h2 class="section-title" style="margin-bottom:16px;">¡Ahorra más con Sam's!</h2>
+      <div class="cat-discount-grid">
+        <a href="#" class="cat-discount-card">
+          <div class="cat-discount-card__badge">Hasta <strong>30%</strong></div>
+          <div class="cat-discount-card__img">foto ej</div>
+          <span class="cat-discount-card__label">Vinos y Licores</span>
+        </a>
+        <a href="#" class="cat-discount-card">
+          <div class="cat-discount-card__badge">Hasta <strong>25%</strong></div>
+          <div class="cat-discount-card__img">foto ej</div>
+          <span class="cat-discount-card__label">Despensa</span>
+        </a>
+        <a href="#" class="cat-discount-card">
+          <div class="cat-discount-card__badge">Hasta <strong>15%</strong></div>
+          <div class="cat-discount-card__img">foto ej</div>
+          <span class="cat-discount-card__label">Refrigerados y Frescos</span>
+        </a>
+        <a href="#" class="cat-discount-card">
+          <div class="cat-discount-card__badge">Hasta <strong>20%</strong></div>
+          <div class="cat-discount-card__img">foto ej</div>
+          <span class="cat-discount-card__label">Limpieza</span>
+        </a>
+        <a href="#" class="cat-discount-card">
+          <div class="cat-discount-card__badge">Hasta <strong>40%</strong></div>
+          <div class="cat-discount-card__img">foto ej</div>
+          <span class="cat-discount-card__label">Electrónica</span>
+        </a>
+        <a href="#" class="cat-discount-card">
+          <div class="cat-discount-card__badge">Hasta <strong>30%</strong></div>
+          <div class="cat-discount-card__img">foto ej</div>
+          <span class="cat-discount-card__label">Motos</span>
+        </a>
+        <a href="#" class="cat-discount-card">
+          <div class="cat-discount-card__badge">Hasta <strong>20%</strong></div>
+          <div class="cat-discount-card__img">foto ej</div>
+          <span class="cat-discount-card__label">Ropa</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMO GRID: Carousel + Membresia  -->
+  <div style="padding:0 16px 16px;">
+    <div style="max-width:var(--max-w);margin:0 auto;">
+      <div class="banner-grid-matched">
+        <!-- promo carrusel -->
+        <div class="promo-carousel" id="promoCarousel2">
+          <div class="promo-carousel__track" id="promoTrack2">
+            <div class="promo-carousel__slide" style="background:#003b73;padding:24px;">
+              <div style="font-size:1rem;font-weight:700;">La mejor calidad</div>
+              <div style="font-size:0.8125rem;opacity:.8;margin-top:4px;">Del 13 al 19 de marzo de 2026.</div>
+              <a href="pages/busqueda.html" class="btn-white" style="margin-top:14px;display:inline-block;">Ver productos</a>
+            </div>
+            <div class="promo-carousel__slide" style="background:#0067a0;padding:24px;">
+              <div style="font-size:1rem;font-weight:700;">Productos únicos, días memorables</div>
+              <div style="font-size:1.5rem;font-weight:900;margin-top:6px;">RECIBE EN HORAS</div>
+              <div style="font-size:0.8125rem;opacity:.8;margin-top:4px;">Exclusivo Member's Mark</div>
+            </div>
+            <div class="promo-carousel__slide" style="background:#003b73;padding:24px;">
+              <div style="font-size:1rem;font-weight:700;">Estrena en grande</div>
+              <div style="display:flex;align-items:baseline;gap:4px;margin-top:8px;">
+                <span style="font-size:0.75rem;">Hasta</span>
+                <span style="font-size:2rem;font-weight:900;">40%</span>
+                <span style="font-size:1rem;font-weight:300;">+</span>
+                <span style="font-size:0.8125rem;">5 iguales y ahorra 5% adicional</span>
+              </div>
+              <div style="font-size:0.6875rem;opacity:.7;margin-top:6px;">Barras de Sonido | Sólo hoy</div>
+            </div>
+          </div>
+          <button class="promo-carousel__arrow promo-carousel__arrow--prev" onclick="promoSlide2(-1)" aria-label="Anterior">‹</button>
+          <button class="promo-carousel__arrow promo-carousel__arrow--next" onclick="promoSlide2(1)" aria-label="Siguiente">›</button>
+          <div class="promo-carousel__dots" id="promoDots2">
+            <button class="promo-carousel__dot active" onclick="promoGo2(0)"></button>
+            <button class="promo-carousel__dot" onclick="promoGo2(1)"></button>
+            <button class="promo-carousel__dot" onclick="promoGo2(2)"></button>
+          </div>
+        </div>
+        <!-- Memebresia -->
+        <div class="banner-sm" style="background:#0067a0;">
+          <div class="banner-sm__title">Hazte Socio o Renueva tu Membresía a precio especial</div>
+          <div style="margin-top:16px;">
+            <div><span style="font-size:0.6875rem;">Benefits</span></div>
+            <div style="font-size:0.75rem;text-decoration:line-through;opacity:.6;">De: $600 a:</div>
+            <div class="banner-sm__price">$499</div>
+            <div style="background:var(--sams-yellow);color:#000;display:inline-block;padding:2px 10px;border-radius:4px;font-size:0.75rem;font-weight:700;margin-top:4px;">Usando el cupón: SOC2B</div>
+          </div>
+          <div style="margin-top:16px;border-top:1px solid rgba(255,255,255,0.15);padding-top:16px;">
+            <div><span style="font-size:0.6875rem;">Plus</span></div>
+            <div style="font-size:0.75rem;text-decoration:line-through;opacity:.6;">De: $1,200 a:</div>
+            <div class="banner-sm__price">$899</div>
+            <div style="background:var(--sams-yellow);color:#000;display:inline-block;padding:2px 10px;border-radius:4px;font-size:0.75rem;font-weight:700;margin-top:4px;">Usando el cupón: SOC2P</div>
+          </div>
+          <div style="font-size:0.6875rem;opacity:.7;margin-top:12px;">Exclusivo en línea. Del 13 al 19 de marzo 2026.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Los mejores Ahorros (product carousel like real site) -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Los mejores Ahorros</h2>
+        <a href="pages/busqueda.html" class="section-link">Ver más</a>
+      </div>
+
+      <div class="products-scroll">
+        <!-- Product 1 -->
+        <article class="product-card">
+          <div class="product-card__top">
+            <span class="promo-tag">Promoción</span>
+            <a href="#" class="promo-link">Ver más</a>
+          </div>
+          <button class="product-card__wish" aria-label="Agregar a favoritos">
+            <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg>
+          </button>
+          <div class="product-card__img">
+            <div style="width:120px;height:120px;background:#e8f0fe;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:48px;">producto</div>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__name">LG Smart TV 65" OLED evo 4K 2025 con ThinQ AI webOS</p>
+            <div class="product-card__price">$27,999 <span class="product-card__price-old">$39,999</span></div>
+            <div class="product-card__shipping">Envío sin costo</div>
+          </div>
+          <button class="add-btn">
+            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            Agregar
+          </button>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="product-card">
+          <div class="product-card__top">
+            <span class="promo-tag">Promoción</span>
+            <a href="#" class="promo-link">Ver más</a>
+          </div>
+          <button class="product-card__wish" aria-label="Agregar a favoritos">
+            <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg>
+          </button>
+          <div class="product-card__img">
+            <div style="width:120px;height:120px;background:#f0f5e8;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:48px;">producto</div>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__name">Hisense Smart TV 50" 4K QLED GDQ 2025 - Edición Especial</p>
+            <div class="product-card__price">$9,499 <span class="product-card__price-old">$13,999</span></div>
+            <div class="product-card__shipping">Envío sin costo</div>
+          </div>
+          <button class="add-btn">
+            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            Agregar
+          </button>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="product-card">
+          <div class="product-card__top">
+            <span class="promo-tag">Promoción</span>
+            <a href="#" class="promo-link">Ver más</a>
+          </div>
+          <button class="product-card__wish" aria-label="Agregar a favoritos">
+            <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg>
+          </button>
+          <div class="product-card__img">
+            <div style="width:120px;height:120px;background:#e0eef8;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:48px;">producto</div>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__name">LG Smart TV 100" QNED MiniLED 4K 2025 con webOS</p>
+            <div class="product-card__price">$54,999 <span class="product-card__price-old">$69,999</span></div>
+            <div class="product-card__shipping">Envío sin costo</div>
+          </div>
+          <button class="add-btn">
+            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            Agregar
+          </button>
+        </article>
+
+        <!-- Product 4 -->
+        <article class="product-card">
+          <div class="product-card__top">
+            <span class="promo-tag">Promoción</span>
+            <a href="#" class="promo-link">Ver más</a>
+          </div>
+          <button class="product-card__wish" aria-label="Agregar a favoritos">
+            <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg>
+          </button>
+          <div class="product-card__img">
+            <div style="width:120px;height:120px;background:#e8f0fe;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:48px;">producto</div>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__name">LG Smart TV 55" QNED 4K 2025 con AI ThinQ webOS</p>
+            <div class="product-card__price">$12,499 <span class="product-card__price-old">$17,999</span></div>
+          </div>
+          <button class="add-btn">
+            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            Agregar
+          </button>
+        </article>
+
+        <!-- Product 5 -->
+        <article class="product-card">
+          <div class="product-card__top">
+            <span class="promo-tag">Promoción</span>
+            <a href="#" class="promo-link">Ver más</a>
+          </div>
+          <button class="product-card__wish" aria-label="Agregar a favoritos">
+            <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg>
+          </button>
+          <div class="product-card__img">
+            <div style="width:120px;height:120px;background:#e8e8e8;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:48px;">producto</div>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__name">LG Smart TV 75" NanoCell 4K 2025 - Serie 75NANO</p>
+            <div class="product-card__price">$19,999 <span class="product-card__price-old">$27,999</span></div>
+          </div>
+          <button class="add-btn">
+            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            Agregar
+          </button>
+        </article>
+
+        <!-- Product 6 -->
+        <article class="product-card">
+          <div class="product-card__top">
+            <span class="promo-tag">Promoción</span>
+            <a href="#" class="promo-link">Ver más</a>
+          </div>
+          <button class="product-card__wish" aria-label="Agregar a favoritos">
+            <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg>
+          </button>
+          <div class="product-card__img">
+            <div style="width:120px;height:120px;background:#f0f0f0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:48px;">producto</div>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__name">Samsung Barra de Sonido HW-Q990D 11.1.4 con Dolby Atmos</p>
+            <div class="product-card__price">$16,499 <span class="product-card__price-old">$22,999</span></div>
+            <div class="product-card__shipping">Envío sin costo</div>
+          </div>
+          <button class="add-btn">
+            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            Agregar
+          </button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Subcategory pills section -->
+  <section class="section" style="background:var(--bg-gray);padding-top:24px;">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">La mejor tecnología en productos Samsung</h2>
+      </div>
+      <div class="subcategory-pills">
+        <button class="pill active">Pantallas</button>
+        <button class="pill">Audio y Barras de Sonido</button>
+        <button class="pill">Audífonos</button>
+        <button class="pill">Garantía Extendida</button>
+        <button class="pill">Streaming y Soportes</button>
+        <button class="pill">Todo para Pantallas</button>
+      </div>
+
+      <div class="products-grid" style="margin-top:16px;">
+        <article class="product-card">
+          <div class="product-card__top"><span class="promo-tag">Promoción</span><a href="#" class="promo-link">Ver más</a></div>
+          <button class="product-card__wish" aria-label="Favoritos"><svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg></button>
+          <div class="product-card__img"><div style="width:110px;height:110px;background:#e8f0fe;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:42px;">producto</div></div>
+          <div class="product-card__info">
+            <p class="product-card__name">Samsung Galaxy S25 Ultra 256GB Titanio Negro</p>
+            <div class="product-card__price">$22,999 <span class="product-card__price-old">$29,999</span></div>
+          </div>
+          <button class="add-btn"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Agregar</button>
+        </article>
+
+        <article class="product-card">
+          <div class="product-card__top"><span class="promo-tag">Promoción</span><a href="#" class="promo-link">Ver más</a></div>
+          <button class="product-card__wish" aria-label="Favoritos"><svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg></button>
+          <div class="product-card__img"><div style="width:110px;height:110px;background:#f5f5f5;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:42px;">producto</div></div>
+          <div class="product-card__info">
+            <p class="product-card__name">Samsung Galaxy Book4 Pro 16" Intel Core Ultra 7</p>
+            <div class="product-card__price">$28,499</div>
+          </div>
+          <button class="add-btn"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Agregar</button>
+        </article>
+
+        <article class="product-card">
+          <div class="product-card__top"><span class="promo-tag">Promoción</span><a href="#" class="promo-link">Ver más</a></div>
+          <button class="product-card__wish" aria-label="Favoritos"><svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg></button>
+          <div class="product-card__img"><div style="width:110px;height:110px;background:#ede9fe;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:42px;">producto</div></div>
+          <div class="product-card__info">
+            <p class="product-card__name">Samsung Galaxy Buds3 Pro Cancelación de Ruido Activa</p>
+            <div class="product-card__price">$3,999 <span class="product-card__price-old">$5,499</span></div>
+          </div>
+          <button class="add-btn"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Agregar</button>
+        </article>
+
+        <article class="product-card">
+          <div class="product-card__top"><span class="promo-tag">Promoción</span><a href="#" class="promo-link">Ver más</a></div>
+          <button class="product-card__wish" aria-label="Favoritos"><svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg></button>
+          <div class="product-card__img"><div style="width:110px;height:110px;background:#ecfdf5;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:42px;">producto</div></div>
+          <div class="product-card__info">
+            <p class="product-card__name">Samsung Galaxy Watch Ultra LTE 47mm Titanio</p>
+            <div class="product-card__price">$9,999 <span class="product-card__price-old">$13,999</span></div>
+          </div>
+          <button class="add-btn"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Agregar</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="membership-banner">
+        <h2>¿Aún no eres Socio Plus?</h2>
+        <p>Obtén 2% de cashback en todas tus compras, acceso anticipado a ofertas exclusivas y envío gratis ilimitado.</p>
+        <a href="#" class="btn-white">Conoce los beneficios</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Sam's Club</h3>
+        <a href="#">Sobre nosotros</a><a href="#">Trabaja con nosotros</a>
+        <a href="#">Responsabilidad social</a><a href="#">Aviso de privacidad</a>
+      </div>
+      <div class="footer-col">
+        <h3>Compras</h3>
+        <a href="#">Membresías</a><a href="#">Ofertas</a>
+        <a href="#">Catálogo digital</a><a href="#">Tarjeta de regalo</a>
+      </div>
+      <div class="footer-col">
+        <h3>Ayuda</h3>
+        <a href="#">Preguntas frecuentes</a><a href="#">Devoluciones</a>
+        <a href="#">Rastrear pedido</a><a href="#">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <h3>Síguenos</h3>
+        <a href="#">Facebook</a><a href="#">Instagram</a>
+        <a href="#">X (Twitter)</a><a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      Sam's Club Mexico (pagina no oficial) | FCFM UANL | Juan Farias & Marco Sánchez 
+    </div>
+  </div>
+</footer>
+
+<!-- ===== BOTTOM NAV ===== -->
+<nav class="bottom-nav" aria-label="Navegación rápida">
+  <a href="index.html" class="bnav-item active"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Inicio</span></a>
+  <a href="pages/busqueda.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span>Buscar</span></a>
+  <a href="#" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span>Carrito</span></a>
+  <a href="pages/login.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>Cuenta</span></a>
+</nav>
+
+<!-- ===== ACCESSIBILITY PANEL ===== -->
+<aside class="a11y-panel" role="dialog" aria-label="Accesibilidad">
+  <div class="a11y-head"><h2>♿ Accesibilidad</h2><button class="a11y-close" onclick="toggleA11y()">✕</button></div>
+  <div class="a11y-group"><div class="a11y-label">Apariencia</div>
+    <div class="toggle" data-tog="theme" onclick="toggleTheme()" role="switch" tabindex="0"><span class="toggle__text">Modo oscuro</span><div class="toggle__track"></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Tamaño de texto</div>
+    <div class="a11y-range"><input type="range" id="font-range" min="90" max="150" step="10" value="100" oninput="updateFont(this.value)" aria-label="Tamaño de texto">
+    <div class="a11y-range__vals"><span>90%</span><span id="font-val">100%</span><span>150%</span></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Contraste</div>
+    <div class="toggle" data-tog="contrast" onclick="toggleContrast()" role="switch" tabindex="0"><span class="toggle__text">Alto contraste</span><div class="toggle__track"></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Color</div>
+    <div class="toggle" data-tog="gray" onclick="toggleGray()" role="switch" tabindex="0"><span class="toggle__text">Blanco y negro</span><div class="toggle__track"></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Espaciado</div>
+    <div style="display:flex;gap:6px;">
+      <button onclick="setSpacing('normal')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Normal</button>
+      <button onclick="setSpacing('wide')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Amplio</button>
+      <button onclick="setSpacing('wider')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Muy amplio</button>
+    </div>
+  </div>
+  <button onclick="resetA11y()" style="width:100%;padding:10px;background:var(--bg-gray);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:0.8125rem;font-weight:600;margin-top:16px;cursor:pointer;">Restablecer todo</button>
+</aside>
+
+<!-- ===== FLOATING A11Y BUTTON (always visible, bottom-right) ===== -->
+<button class="a11y-fab" onclick="toggleA11y()" aria-label="Abrir configuración de accesibilidad">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff">
+    <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
+  </svg>
+</button>
+
+<!-- ===== ONBOARDING ===== -->
+<div class="onboard-overlay">
+  <div class="onboard-modal">
+    <div class="onboard-step active"><div class="onboard-step__icon">🏪</div><h2 class="onboard-step__title">¡Bienvenido a Sam's Club!</h2><p class="onboard-step__text">Tu club de precios favorito, ahora con una experiencia de compra renovada.</p></div>
+    <div class="onboard-step"><div class="onboard-step__icon">💳</div><h2 class="onboard-step__title">Membresía con Beneficios</h2><p class="onboard-step__text">Como socio, accedes a precios exclusivos, cashback y ofertas especiales.</p></div>
+    <div class="onboard-step"><div class="onboard-step__icon">🛒</div><h2 class="onboard-step__title">Compra Fácil</h2><p class="onboard-step__text">Busca productos, agrégalos al carrito y elige entrega a domicilio o recoger en club.</p></div>
+    <div class="onboard-step"><div class="onboard-step__icon">♿</div><h2 class="onboard-step__title">Accesibilidad para Todos</h2><p class="onboard-step__text">Modo oscuro, tamaño de texto ajustable, alto contraste y más. Encuéntralo en la barra superior.</p></div>
+    <div class="onboard-footer">
+      <div class="onboard-dots"><div class="onboard-dot active"></div><div class="onboard-dot"></div><div class="onboard-dot"></div><div class="onboard-dot"></div></div>
+      <div style="display:flex;gap:4px;"><button class="btn-skip" onclick="obClose()">Omitir</button><button class="btn-primary" onclick="obNext()">Siguiente →</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MOBILE MENU ===== -->
+<nav class="mobile-menu"><div class="mm-head"><strong>¡Hola, Socio!</strong><span>Inicia sesión para ver tus beneficios</span></div>
+  <div class="mm-section"><a href="pages/login.html" class="mm-item">🔑 Iniciar Sesión</a><a href="#" class="mm-item">📝 Registrarse</a></div>
+  <div class="mm-section"><a href="#" class="mm-item">📱 Electrónica</a><a href="#" class="mm-item">🏠 Hogar</a><a href="#" class="mm-item">🍎 Alimentos</a><a href="#" class="mm-item">👕 Ropa</a><a href="#" class="mm-item">💊 Farmacia</a></div>
+  <div class="mm-section"><a href="#" class="mm-item" onclick="toggleTheme();toggleMenu();">🌓 Modo Oscuro</a><a href="#" class="mm-item" onclick="toggleA11y();toggleMenu();">♿ Accesibilidad</a></div>
+</nav>
+
+<div class="overlay" onclick="closePanels()"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
