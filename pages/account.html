@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-font-scale="100" data-spacing="normal">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi cuenta | Sam's Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{font-family:var(--font);font-size:16px;}
+        body{min-height:100vh;background:var(--bg);color:var(--text);line-height:1.5;transition:background var(--ease-slow),color var(--ease-slow);opacity:0;transform:translateY(12px);animation:pageFadeIn .24s ease forwards;}
+        @keyframes pageFadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+        a{color:var(--sams-blue);text-decoration:none;}
+        a:hover{text-decoration:underline;}
+        button{font:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+        .page-shell{width:100%;max-width:none;margin:0;min-height:100vh;padding:20px 0 80px;display:flex;flex-direction:column;}
+        .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px;}
+        .topbar__brand{display:flex;align-items:center;gap:8px;color:var(--sams-blue);text-decoration:none;font-weight:700;font-size:1.25rem;}
+        .topbar__brand span{font-size:1.6rem;line-height:1;}
+        .topbar-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+        .btn-pill{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:var(--sams-blue);color:#fff;font-weight:600;transition:background var(--ease);}
+        .btn-pill:hover{background:var(--sams-hover);}
+        .logo{text-decoration:none;}
+        .logo:hover{transform:translateY(-1px);text-decoration:none;}
+        .logo:hover .logo-text, .logo:hover .logo-bracket{color:var(--sams-yellow);}
+        .account-summary{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:24px;}
+        .panel{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius);padding:24px;}
+        .profile-card{display:grid;gap:18px;}
+        .profile-card__header{display:flex;align-items:center;gap:16px;}
+        .avatar{width:72px;height:72px;border-radius:22px;background:var(--sams-blue);display:flex;align-items:center;justify-content:center;color:#fff;font-size:2rem;font-weight:700;}
+        .profile-meta{display:grid;gap:6px;}
+        .profile-meta h1{font-size:1.3rem;font-weight:800;}
+        .profile-meta p{font-size:0.95rem;color:var(--text-2);}
+        .profile-info{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+        .info-card{background:var(--secondary-bg);border-radius:var(--radius);padding:14px;}
+        .info-card strong{display:block;font-size:1.25rem;font-weight:800;color:var(--text);}
+        .info-card span{display:block;font-size:0.8rem;color:var(--text-3);margin-top:4px;}
+        .contact-list{display:grid;gap:12px;}
+        .contact-item{background:var(--secondary-bg);border-radius:var(--radius);padding:16px;}
+        .contact-item strong{display:block;font-size:0.95rem;font-weight:700;color:var(--text);}
+        .contact-item span{display:block;font-size:0.875rem;color:var(--text-2);margin-top:6px;}
+        .action-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+        .action-card{display:flex;flex-direction:column;gap:10px;padding:18px;border:1px solid var(--border-light);border-radius:var(--radius);background:var(--bg-card);transition:transform var(--ease),border-color var(--ease);}
+        .action-card:hover{transform:translateY(-2px);border-color:var(--sams-blue);}
+        .action-card h2{font-size:1rem;font-weight:700;}
+        .action-card p{font-size:0.875rem;color:var(--text-2);}
+        .account-section{display:grid;gap:16px;padding-inline:16px;}
+        .section-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;}
+        .section-heading h2{font-size:1.05rem;font-weight:700;}
+        .section-link{font-size:0.875rem;color:var(--sams-blue);font-weight:600;}
+        .order-list{display:grid;gap:12px;}
+        .order-item{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px;border:1px solid var(--border-light);border-radius:var(--radius);background:var(--bg-card);transition:background var(--ease), transform var(--ease), border-color var(--ease);cursor:pointer;}
+        .order-item:hover{background:var(--secondary-bg);border-color:var(--sams-blue);transform:translateY(-1px);}
+        .order-info{display:grid;gap:4px;}
+        .order-info span{font-size:0.875rem;color:var(--text-2);}
+        .order-status{font-size:0.875rem;font-weight:700;color:var(--sams-green);}
+        .account-footer{margin-top:32px;padding:18px 20px;border:1px solid var(--border-light);border-radius:var(--radius);background:var(--secondary-bg);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;}
+        .footer-note{font-size:0.825rem;color:var(--text-3);}
+        .logout-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:999px;background:var(--sams-red);color:#fff;font-weight:700;transition:background var(--ease), color var(--ease);}
+        .logout-btn:hover{background:#fff;color:var(--sams-red);border:1px solid var(--sams-red);}
+        .footer{margin-top:40px;}
+        .secondary-bar{margin-bottom:20px;}
+        @media (max-width:719px){
+            .topbar{flex-direction:column;align-items:flex-start;}
+            .topbar-actions{width:100%;justify-content:flex-start;}
+            .topbar-actions .btn-pill{width:100%;justify-content:center;}
+            .profile-card__header{flex-direction:column;align-items:flex-start;}
+            .profile-info{grid-template-columns:1fr;}
+            .action-grid{grid-template-columns:1fr;}
+            .section-heading{flex-direction:column;align-items:flex-start;}
+            .order-item{flex-direction:column;align-items:flex-start;}
+            .account-footer{flex-direction:column;align-items:flex-start;}
+            .logout-btn{width:100%;justify-content:center;}
+        }
+    @media (min-width:720px){.action-grid{grid-template-columns:repeat(4,minmax(0,1fr));}.profile-info{grid-template-columns:repeat(4,minmax(0,1fr));}}
+    @media (min-width:1024px){.page-shell{padding:32px 24px 96px;}}  
+    </style>
+</head>
+<body>
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar">
+    ¡Aprovecha! Hasta 30% en Vinos y Licores Del 13 al 19 de marzo 2026
+    <a href="#">Ver más ></a>
+</div>
+
+<!--  HEADER  -->
+<header class="header">
+    <div class="header-inner">
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </button>
+
+    <a href="../index.html" class="logo" aria-label="Sam's Club inicio">
+        <span class="logo-text">sam's club</span>
+        <span class="logo-bracket">&lt;&gt;</span>
+    </a>
+
+    <nav class="header-nav">
+        <div class="nav-dropdown">
+            <a href="#" class="header-nav__link header-nav__link--dropdown">
+                <svg viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+                Departamentos
+                <span class="nav-dropdown__caret">▾</span>
+            </a>
+            <div class="nav-dropdown__panel">
+                <a href="busqueda.html">Electrónica</a>
+                <a href="busqueda.html">Hogar</a>
+                <a href="busqueda.html">Alimentos</a>
+                <a href="busqueda.html">Farmacia</a>
+                <a href="busqueda.html">Tecnología</a>
+                <a href="busqueda.html">Moda</a>
+            </div>
+        </div>
+        <a href="beneficios.html" class="header-nav__link">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        Beneficios
+        </a>
+    </nav>
+
+    <div class="search-wrap" role="search">
+        <input type="search" placeholder="Buscar en Sam's Club en línea o en tienda" aria-label="Buscar productos">
+        <button class="search-btn" aria-label="Buscar">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </button>
+    </div>
+
+    <div class="header-actions">
+        <a href="#" class="h-action" aria-label="Tus productos">
+            <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>
+            <span class="h-action__label">Vuelve a pedirlos</span>
+            <span class="h-action__sub">Tus productos</span>
+        </a>
+        <a href="login.html" class="h-action" aria-label="Cuenta">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            <span class="h-action__label">Iniciar sesión</span>
+            <span class="h-action__sub">Cuenta</span>
+        </a>
+        <a href="carrito.html" class="h-action" aria-label="Carrito" style="position:relative">
+            <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            <span class="cart-badge">0</span>
+        </a>
+        <button class="h-action" onclick="toggleTheme()" aria-label="Cambiar tema">
+            <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+        </button>
+        </div>
+    </div>
+</header>
+
+<!-- ===== SECONDARY BAR ===== -->
+<div class="secondary-bar">
+    <div class="secondary-inner">
+        <div class="sec-left">
+        <a href="#">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Monterrey, 64349
+        </a>
+        <span>Sam's Club Cumbres, Mty</span>
+        </div>
+        <div class="sec-links">
+        <a href="#">Cuponera</a>
+        <a href="#">Hazte Socio</a>
+        <a href="#">Ayuda</a>
+        <a href="#">Socio de Negocio</a>
+        <a href="#">Member's Mark</a>
+        <a href="#">Facturar</a>
+        <a href="#">Encuentra tu Club</a>
+        </div>
+    </div>
+</div>
+
+    <section class="account-summary">
+        <article class="panel profile-card">
+            <div class="profile-card__header">
+                <div class="avatar">MG</div>
+                    <div class="profile-meta">
+                        <h1>María Gómez</h1>
+                        <p>Socio Plus | Miembro desde 12 mar 2025</p>
+                    </div>
+            </div>
+            <div class="profile-info">
+                <div class="info-card">
+                    <strong>Renovación</strong>
+                    <span>19 marzo 2026</span>
+                </div>
+                <div class="info-card">
+                    <strong>4,520</strong>
+                    <span>Puntos de recompensa</span>
+                </div>
+                <div class="info-card">
+                    <strong>3</strong>
+                    <span>Pedidos activos</span>
+                </div>
+                <div class="info-card">
+                    <strong>2 tarjetas</strong>
+                    <span>Métodos de pago guardados</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="panel">
+            <div class="section-heading">
+                <h2>Información de Contacto</h2>
+            </div>
+            <div class="contact-list">
+                <div class="contact-item">
+                    <strong>Correo electrónico</strong>
+                    <span>maria.gomez@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <strong>Teléfono</strong>
+                    <span>+52 81 1234 5678</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="panel">
+            <div class="section-heading">
+                <h2>Accesos rápidos</h2>
+                <a href="#pedidos" class="section-link">Ver todos</a>
+            </div>
+            <div class="action-grid">
+                <a href="#pedidos" class="action-card">
+                    <h2>Mis pedidos</h2>
+                    <p>Revisa el estado de tus compras más recientes y próximos envíos.</p>
+                </a>
+                <a href="#direcciones" class="action-card">
+                    <h2>Direcciones</h2>
+                    <p>Administra direcciones de envío y de recogida en club.</p>
+                </a>
+                <a href="#pagos" class="action-card">
+                    <h2>Métodos de pago</h2>
+                    <p>Agrega tarjetas nuevas o edita las que ya tienes guardadas.</p>
+                </a>
+                <a href="#preferencias" class="action-card">
+                    <h2>Preferencias</h2>
+                    <p>Actualiza alertas, datos personales y notificaciones.</p>
+                </a>
+            </div>
+        </article>
+    </section>
+
+    <section class="account-section" id="pedidos">
+        <div class="section-heading">
+            <h2>Pedidos recientes</h2>
+            <a href="#" class="section-link">Ver historial</a>
+        </div>
+        <div class="order-list">
+            <div class="order-item">
+                <div class="order-info">
+                    <strong>Orden #4512</strong>
+                    <span>En preparación · Taller Sam's Club Cumbres</span>
+                </div>
+                <div class="order-status">En camino</div>
+            </div>
+            <div class="order-item">
+                <div class="order-info">
+                    <strong>Orden #4478</strong>
+                    <span>Entregado · 04 abr 2026</span>
+                </div>
+                <div class="order-status">Entregado</div>
+            </div>
+            <div class="order-item">
+                <div class="order-info">
+                    <strong>Orden #4431</strong>
+                    <span>Programado para recogida · 11 abr 2026</span>
+                </div>
+                <div class="order-status">Recogida</div>
+            </div>
+        </div>
+    </section>
+
+        <div class="account-footer">
+            <div class="footer-note">Tu perfil de Sam's Club te ayuda a navegar ofertas, administrar tu membresía y ver tu historial de compras.</div>
+            <a href="login.html" class="logout-btn">Cerrar sesión</a>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Sam's Club</h3>
+                    <a href="#">Sobre nosotros</a><a href="#">Trabaja con nosotros</a>
+                    <a href="#">Responsabilidad social</a><a href="#">Aviso de privacidad</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Compras</h3>
+                    <a href="#">Membresías</a><a href="#">Ofertas</a>
+                    <a href="#">Catálogo digital</a><a href="#">Tarjeta de regalo</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Ayuda</h3>
+                    <a href="#">Preguntas frecuentes</a><a href="#">Devoluciones</a>
+                    <a href="#">Rastrear pedido</a><a href="#">Contacto</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Síguenos</h3>
+                    <a href="#">Facebook</a><a href="#">Instagram</a>
+                    <a href="#">X (Twitter)</a><a href="#">YouTube</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+            Sam's Club Mexico (pagina no oficial) | FCFM UANL | Juan Farias & Marco Sánchez
+            </div>
+        </div>
+    </footer>
+
+    <nav class="bottom-nav" aria-label="Navegación rápida">
+        <a href="../index.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Inicio</span></a>
+        <a href="busqueda.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span>Buscar</span></a>
+        <a href="carrito.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span>Carrito</span></a>
+        <a href="account.html" class="bnav-item active"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>Cuenta</span></a>
+    </nav>
+
+    <!-- ===== ACCESSIBILITY PANEL ===== -->
+    <aside class="a11y-panel" role="dialog" aria-label="Accesibilidad">
+        <div class="a11y-head"><h2>♿ Accesibilidad</h2><button class="a11y-close" onclick="toggleA11y()">✕</button></div>
+        <div class="a11y-group"><div class="a11y-label">Apariencia</div>
+            <div class="toggle" data-tog="theme" onclick="toggleTheme()" role="switch" tabindex="0"><span class="toggle__text">Modo oscuro</span><div class="toggle__track"></div></div>
+        </div>
+        <div class="a11y-group"><div class="a11y-label">Tamaño de texto</div>
+            <div class="a11y-range"><input type="range" id="font-range" min="90" max="150" step="10" value="100" oninput="updateFont(this.value)" aria-label="Tamaño de texto">
+            <div class="a11y-range__vals"><span>90%</span><span id="font-val">100%</span><span>150%</span></div></div></div>
+        <div class="a11y-group"><div class="a11y-label">Contraste</div>
+            <div class="toggle" data-tog="contrast" onclick="toggleContrast()" role="switch" tabindex="0"><span class="toggle__text">Alto contraste</span><div class="toggle__track"></div></div>
+        </div>
+        <div class="a11y-group"><div class="a11y-label">Color</div>
+            <div class="toggle" data-tog="gray" onclick="toggleGray()" role="switch" tabindex="0"><span class="toggle__text">Blanco y negro</span><div class="toggle__track"></div></div>
+        </div>
+        <div class="a11y-group"><div class="a11y-label">Espaciado</div>
+            <div style="display:flex;gap:6px;">
+            <button onclick="setSpacing('normal')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Normal</button>
+            <button onclick="setSpacing('wide')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Amplio</button>
+            <button onclick="setSpacing('wider')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Muy amplio</button>
+            </div>
+        </div>
+        <button onclick="resetA11y()" style="width:100%;padding:10px;background:var(--bg-gray);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:0.8125rem;font-weight:600;margin-top:16px;cursor:pointer;">Restablecer todo</button>
+    </aside>
+
+    <!-- ===== FLOATING A11Y BUTTON (always visible, bottom-right) ===== -->
+    <button class="a11y-fab" onclick="toggleA11y()" aria-label="Abrir configuración de accesibilidad">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff">
+            <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
+        </svg>
+    </button>
+
+    <nav class="mobile-menu"><div class="mm-head"><strong>¡Hola, Socio!</strong><span>Inicia sesión para ver tus beneficios</span></div>
+        <div class="mm-section"><a href="login.html" class="mm-item">🔑 Iniciar Sesión</a><a href="#" class="mm-item">📝 Registrarse</a></div>
+        <div class="mm-section"><a href="busqueda.html" class="mm-item">📱 Electrónica</a><a href="busqueda.html" class="mm-item">🏠 Hogar</a><a href="busqueda.html" class="mm-item">🍎 Alimentos</a><a href="busqueda.html" class="mm-item">👕 Ropa</a><a href="busqueda.html" class="mm-item">💊 Farmacia</a></div>
+        <div class="mm-section"><a href="#" class="mm-item" onclick="toggleTheme();toggleMenu();">🌓 Modo Oscuro</a><a href="#" class="mm-item" onclick="toggleA11y();toggleMenu();">♿ Accesibilidad</a></div>
+    </nav>
+    <div class="overlay" onclick="closePanels()"></div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

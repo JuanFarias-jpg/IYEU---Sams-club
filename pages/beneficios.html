@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-font-scale="100" data-spacing="normal">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneficios de ser Socio | Sam's Club México</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        body {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: pageFadeIn .24s ease forwards;
+        }
+
+        @keyframes pageFadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .benefits-grid .promo-card,
+        .service-grid > div {
+            transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background-color .22s ease;
+            cursor: default;
+            border: 1px solid var(--border);
+        }
+        .benefits-grid .promo-card:hover,
+        .service-grid > div:hover {
+            border-color: var(--sams-blue);
+            background-color: rgba(34, 78, 255, .04);
+            transform: translateY(-2px);
+            box-shadow: 0 18px 35px rgba(34, 78, 255, .1);
+        }
+    </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Saltar al contenido principal</a>
+
+<div class="announce-bar">¡Aprovecha! Hasta 30% en Vinos y Licores Del 13 al 19 de marzo 2026 <a href="#">Ver más ></a></div>
+
+<header class="header">
+    <div class="header-inner">
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú"><svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></button>
+        <a href="../index.html" class="logo" aria-label="Sam's Club inicio"><span class="logo-text">sam's club</span><span class="logo-bracket">&lt;&gt;</span></a>
+        <nav class="header-nav">
+        <div class="nav-dropdown">
+            <a href="#" class="header-nav__link header-nav__link--dropdown"><svg viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg> Departamentos <span class="nav-dropdown__caret">▾</span></a>
+            <div class="nav-dropdown__panel">
+                <a href="busqueda.html">Electrónica</a>
+                <a href="busqueda.html">Hogar</a>
+                <a href="busqueda.html">Alimentos</a>
+                <a href="busqueda.html">Farmacia</a>
+                <a href="busqueda.html">Tecnología</a>
+                <a href="busqueda.html">Moda</a>
+            </div>
+        </div>
+        <a href="beneficios.html" class="header-nav__link active"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6H7v-2h2V8h2v1h2v2h-2v6z"/></svg> Beneficios</a>
+        </nav>
+        <div class="search-wrap" role="search">
+            <input type="search" placeholder="Buscar en Sam's Club en línea o en tienda" aria-label="Buscar" value="Beneficios">
+            <button class="search-btn" aria-label="Buscar"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
+        </div>
+        <div class="header-actions">
+            <a href="#" class="h-action" aria-label="Tus productos"><svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg><span class="h-action__sub">Tus productos</span></a>
+            <a href="login.html" class="h-action" aria-label="Cuenta"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span class="h-action__sub">Cuenta</span></a>
+            <a href="carrito.html" class="h-action" aria-label="Carrito" style="position:relative"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span class="cart-badge">0</span></a>
+            <button class="h-action" onclick="toggleTheme()" aria-label="Cambiar tema"><svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg></button>
+        </div>
+    </div>
+</header>
+
+<div class="secondary-bar">
+    <div class="secondary-inner">
+        <div class="sec-left">
+            <a href="#">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Monterrey, 64349
+            </a>
+        <span>Sam's Club Cumbres, Mty</span>
+        </div>
+        <div class="sec-links">
+            <a href="#">Cuponera</a>
+            <a href="#">Hazte Socio</a>
+            <a href="#">Ayuda</a>
+            <a href="#">Socio de Negocio</a>
+            <a href="#">Member's Mark</a>
+            <a href="#">Facturar</a>
+            <a href="#">Encuentra tu Club</a>
+        </div>
+    </div>
+</div>
+
+<main id="main">
+    <section class="section" style="padding-top:24px;padding-bottom:16px;">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h1 class="section-title">Beneficios de ser socio</h1>
+                    <p style="font-size:0.95rem;color:var(--text-2);margin-top:6px;max-width:640px;">Descubre las ventajas exclusivas que tienes como miembro de Sam's Club: ahorros, envío gratis, recompensas y acceso a servicios pensados en tu ahorro y comodidad.</p>
+                </div>
+            </div>
+
+            <div class="benefits-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:24px;">
+                <article class="promo-card" style="background:var(--bg-card);border:1px solid var(--border);padding:24px;border-radius:20px;">
+                    <div style="font-size:1.2rem;font-weight:800;margin-bottom:12px;">Ahorros exclusivos</div>
+                    <p style="color:var(--text-2);line-height:1.6;">Accede a precios especiales solo para socios, ofertas por volumen y promociones adicionales en marcas premium.</p>
+                </article>
+                <article class="promo-card" style="background:var(--bg-card);border:1px solid var(--border);padding:24px;border-radius:20px;">
+                    <div style="font-size:1.2rem;font-weight:800;margin-bottom:12px;">Envíos sin costo</div>
+                    <p style="color:var(--text-2);line-height:1.6;">Recibe tus compras desde el club a tu domicilio sin cargos extra en pedidos participantes.</p>
+                </article>
+                <article class="promo-card" style="background:var(--bg-card);border:1px solid var(--border);padding:24px;border-radius:20px;">
+                    <div style="font-size:1.2rem;font-weight:800;margin-bottom:12px;">Ofertas anticipadas</div>
+                    <p style="color:var(--text-2);line-height:1.6;">Solo los socios conocen primero las nuevas promociones, eventos y lanzamientos exclusivos.</p>
+                </article>
+                <article class="promo-card" style="background:var(--bg-card);border:1px solid var(--border);padding:24px;border-radius:20px;">
+                    <div style="font-size:1.2rem;font-weight:800;margin-bottom:12px;">Recompensas y cashback</div>
+                    <p style="color:var(--text-2);line-height:1.6;">Disfruta de puntos, descuentos y recompensas por cada compra dentro de tu club y en línea.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-bottom:24px;">
+        <div class="container">
+            <div class="membership-banner" style="background:var(--sams-blue);color:#fff;padding:28px;border-radius:24px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;">
+                <div style="max-width:560px;">
+                    <div style="font-size:1rem;font-weight:700;text-transform:uppercase;opacity:.9;">Ventajas de tu membresía</div>
+                    <h2 style="font-size:2rem;font-weight:900;margin:10px 0;">Más beneficios, más ahorros.</h2>
+                    <p style="font-size:1rem;line-height:1.7;opacity:.92;">Obtener o renovar tu membresía te da acceso a la mejor experiencia de compra con precios bajos, servicios financieros y el mejor surtido.</p>
+                </div>
+                <a href="#" class="btn-white" style="padding:14px 24px;border-radius:999px;">Ver planes</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-bottom:32px;">
+        <div class="container">
+            <h2 class="section-title">Servicios adicionales</h2>
+            <div class="service-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:20px;">
+                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:22px;">
+                    <div style="font-size:1.1rem;font-weight:800;margin-bottom:10px;">Atención exclusiva</div>
+                    <p style="color:var(--text-2);line-height:1.6;">Asesoría personalizada para compras grandes, devoluciones rápidas y soporte preferente.</p>
+                </div>
+                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:22px;">
+                    <div style="font-size:1.1rem;font-weight:800;margin-bottom:10px;">Club en línea</div>
+                    <p style="color:var(--text-2);line-height:1.6;">Accede al catálogo digital, realiza pedidos para recoger o recibir en casa y administra tus beneficios.</p>
+                </div>
+                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:22px;">
+                    <div style="font-size:1.1rem;font-weight:800;margin-bottom:10px;">Pago seguro</div>
+                    <p style="color:var(--text-2);line-height:1.6;">Utiliza métodos de pago confiables y aprovecha opciones de pago a meses sin intereses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Sam's Club</h3>
+                <a href="#">Sobre nosotros</a><a href="#">Trabaja con nosotros</a>
+                <a href="#">Responsabilidad social</a><a href="#">Aviso de privacidad</a>
+            </div>
+            <div class="footer-col">
+                <h3>Compras</h3>
+                <a href="#">Membresías</a><a href="#">Ofertas</a>
+                <a href="#">Catálogo digital</a><a href="#">Tarjeta de regalo</a>
+            </div>
+            <div class="footer-col">
+                <h3>Ayuda</h3>
+                <a href="#">Preguntas frecuentes</a><a href="#">Devoluciones</a>
+                <a href="#">Rastrear pedido</a><a href="#">Contacto</a>
+            </div>
+            <div class="footer-col">
+                <h3>Síguenos</h3>
+                <a href="#">Facebook</a><a href="#">Instagram</a>
+                <a href="#">X (Twitter)</a><a href="#">YouTube</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Sam's Club Mexico (pagina no oficial) | FCFM UANL | Juan Farias & Marco Sánchez 
+        </div>
+    </div>
+</footer>
+
+<nav class="bottom-nav" aria-label="Navegación rápida">
+    <a href="../index.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Inicio</span></a>
+    <a href="busqueda.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span>Buscar</span></a>
+    <a href="carrito.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span>Carrito</span></a>
+    <a href="login.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>Cuenta</span></a>
+</nav>
+
+<div class="mobile-menu">
+    <div class="mm-head"><strong>¡Hola, Socio!</strong><span>Inicia sesión para ver tus beneficios</span></div>
+    <div class="mm-section"><a href="login.html" class="mm-item">🔑 Iniciar Sesión</a><a href="registro.html" class="mm-item">📝 Registrarse</a></div>
+    <div class="mm-section"><a href="busqueda.html" class="mm-item">📱 Electrónica</a><a href="busqueda.html" class="mm-item">🏠 Hogar</a><a href="busqueda.html" class="mm-item">🍎 Alimentos</a><a href="busqueda.html" class="mm-item">👕 Ropa</a><a href="busqueda.html" class="mm-item">💊 Farmacia</a></div>
+    <div class="mm-section"><a href="#" class="mm-item" onclick="toggleTheme();toggleMenu();">🌓 Modo Oscuro</a><a href="#" class="mm-item" onclick="toggleA11y();toggleMenu();">♿ Accesibilidad</a></div>
+</div>
+
+<div class="overlay" onclick="closePanels()"></div>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

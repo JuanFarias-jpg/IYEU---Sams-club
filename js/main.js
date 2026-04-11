@@ -18,16 +18,37 @@ function toggleTheme(){
   document.documentElement.setAttribute('data-theme',n);
   localStorage.setItem('sams-theme',n);
   document.querySelectorAll('[data-tog="theme"]').forEach(el=>el.classList.toggle('on',n==='dark'));
-  showToast(n==='dark'?'🌙 Modo oscuro activado':'☀️ Modo claro activado');
 }
 
 /* === HEADER === */
 function initHeader(){
   const h=document.querySelector('.header');
   if(!h) return;
+  const actions = h.querySelector('.header-actions');
   window.addEventListener('scroll',()=>{
     h.classList.toggle('scrolled',scrollY>50);
   },{passive:true});
+  if(actions){
+    actions.addEventListener('click',e=>{
+      if(e.target.closest('a') || e.target.closest('button')) return;
+      const path = window.location.pathname;
+      const target = path.includes('/pages/') || path.includes('\\pages\\') ? 'login.html' : 'pages/login.html';
+      window.location.href = target;
+    });
+  }
+
+  const dropdown = h.querySelector('.nav-dropdown');
+  if(dropdown){
+    const trigger = dropdown.querySelector('.header-nav__link--dropdown');
+    trigger?.addEventListener('click',e=>{
+      e.preventDefault();
+      dropdown.classList.toggle('nav-dropdown--open');
+    });
+    document.addEventListener('click',e=>{
+      if(!dropdown.classList.contains('nav-dropdown--open')) return;
+      if(!dropdown.contains(e.target)) dropdown.classList.remove('nav-dropdown--open');
+    });
+  }
 }
 
 /* === MICROINTERACTIONS === */
@@ -65,6 +86,33 @@ function initMicro(){
     w.style.transform='scale(1.3)';
     setTimeout(()=>w.style.transform='',200);
     showToast(w.classList.contains('active')?'❤️ Agregado a tu lista':'Removido de tu lista');
+  });
+
+  // Promo links go to product search
+  document.addEventListener('click',e=>{
+    const promo = e.target.closest('.promo-link');
+    if(!promo) return;
+    e.preventDefault();
+    const path = window.location.pathname;
+    const targetHref = path.includes('/pages/') || path.includes('\\pages\\') ? 'busqueda.html' : 'pages/busqueda.html';
+    window.location.href = targetHref;
+  });
+
+  // Product name links to the product detail page
+  document.addEventListener('click',e=>{
+    const nameLink = e.target.closest('.product-card__name');
+    if(!nameLink) return;
+    if(e.target.closest('.add-btn') || e.target.closest('.product-card__wish')) return;
+    const card = nameLink.closest('.product-card');
+    if(!card) return;
+    const path = window.location.pathname;
+    const targetHref = path.includes('/pages/') || path.includes('\\pages\\') ? 'product.html' : 'pages/product.html';
+    if(card.tagName==='A'){
+      card.href=targetHref;
+      return;
+    }
+    e.preventDefault();
+    window.location.href=targetHref;
   });
 
   // Staggered entrance

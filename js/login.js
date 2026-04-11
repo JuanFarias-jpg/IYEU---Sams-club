@@ -101,7 +101,7 @@ function handleLogin() {
     document.getElementById('wm-modal').classList.add('show');
 
     setTimeout(() => {
-      window.location.href = '../index.html';
+      window.location.href = 'account.html';
     }, 2200);
   }, 1500);
 }

@@ -32,11 +32,22 @@
     </a>
 
     <nav class="header-nav">
-      <a href="#" class="header-nav__link">
-        <svg viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
-        Departamentos
-      </a>
-      <a href="#" class="header-nav__link">
+      <div class="nav-dropdown">
+        <a href="#" class="header-nav__link header-nav__link--dropdown">
+          <svg viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+          Departamentos
+          <span class="nav-dropdown__caret">▾</span>
+        </a>
+        <div class="nav-dropdown__panel">
+          <a href="pages/busqueda.html">Electrónica</a>
+          <a href="pages/busqueda.html">Hogar</a>
+          <a href="pages/busqueda.html">Alimentos</a>
+          <a href="pages/busqueda.html">Farmacia</a>
+          <a href="pages/busqueda.html">Tecnología</a>
+          <a href="pages/busqueda.html">Moda</a>
+        </div>
+      </div>
+      <a href="pages/beneficios.html" class="header-nav__link">
         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
         Beneficios
       </a>
@@ -434,7 +445,7 @@
       <div class="membership-banner">
         <h2>¿Aún no eres Socio Plus?</h2>
         <p>Obtén 2% de cashback en todas tus compras, acceso anticipado a ofertas exclusivas y envío gratis ilimitado.</p>
-        <a href="#" class="btn-white">Conoce los beneficios</a>
+        <a href="pages/beneficios.html" class="btn-white">Conoce los beneficios</a>
       </div>
     </div>
   </section>
@@ -475,7 +486,7 @@
 <nav class="bottom-nav" aria-label="Navegación rápida">
   <a href="index.html" class="bnav-item active"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Inicio</span></a>
   <a href="pages/busqueda.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span>Buscar</span></a>
-  <a href="#" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span>Carrito</span></a>
+  <a href="pages/carrito.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span>Carrito</span></a>
   <a href="pages/login.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>Cuenta</span></a>
 </nav>
 
@@ -528,13 +539,33 @@
 
 <!-- ===== MOBILE MENU ===== -->
 <nav class="mobile-menu"><div class="mm-head"><strong>¡Hola, Socio!</strong><span>Inicia sesión para ver tus beneficios</span></div>
-  <div class="mm-section"><a href="pages/login.html" class="mm-item">🔑 Iniciar Sesión</a><a href="#" class="mm-item">📝 Registrarse</a></div>
-  <div class="mm-section"><a href="#" class="mm-item">📱 Electrónica</a><a href="#" class="mm-item">🏠 Hogar</a><a href="#" class="mm-item">🍎 Alimentos</a><a href="#" class="mm-item">👕 Ropa</a><a href="#" class="mm-item">💊 Farmacia</a></div>
+  <div class="mm-section"><a href="pages/login.html" class="mm-item">🔑 Iniciar Sesión</a><a href="pages/registro.html" class="mm-item">📝 Registrarse</a></div>
+  <div class="mm-section"><a href="pages/busqueda.html" class="mm-item">📱 Electrónica</a><a href="pages/busqueda.html" class="mm-item">🏠 Hogar</a><a href="pages/busqueda.html" class="mm-item">🍎 Alimentos</a><a href="pages/busqueda.html" class="mm-item">👕 Ropa</a><a href="pages/busqueda.html" class="mm-item">💊 Farmacia</a></div>
   <div class="mm-section"><a href="#" class="mm-item" onclick="toggleTheme();toggleMenu();">🌓 Modo Oscuro</a><a href="#" class="mm-item" onclick="toggleA11y();toggleMenu();">♿ Accesibilidad</a></div>
 </nav>
 
 <div class="overlay" onclick="closePanels()"></div>
 
 <script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const dropdown = document.querySelector('.nav-dropdown');
+    const trigger = dropdown?.querySelector('.header-nav__link--dropdown');
+
+    if (!dropdown || !trigger) return;
+
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      dropdown.classList.toggle('nav-dropdown--open');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!dropdown.classList.contains('nav-dropdown--open')) return;
+      if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove('nav-dropdown--open');
+      }
+    });
+  });
+</script>
 </body>
 </html>
