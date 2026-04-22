@@ -1,18 +1,5 @@
-/* SAM'S CLUB REDESIGN — LOGIN PAGE JS */
-
-// Theme init
-(function(){
-  const s = localStorage.getItem('sams-theme');
-  if (s) document.documentElement.setAttribute('data-theme', s);
-  else if (matchMedia('(prefers-color-scheme:dark)').matches) document.documentElement.setAttribute('data-theme', 'dark');
-})();
-
-function toggleTheme() {
-  const c = document.documentElement.getAttribute('data-theme');
-  const n = c === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', n);
-  localStorage.setItem('sams-theme', n);
-}
+/* SAM'S CLUB REDESIGN - LOGIN PAGE JS */
+/* Theme handled by main.js */
 
 /* === VALIDATION === */
 function validateEmail() {

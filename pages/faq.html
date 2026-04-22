@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-font-scale="100" data-spacing="normal">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro de Ayuda | Sam's Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    body { animation:pageFadeIn .4s ease forwards; }
+    @keyframes pageFadeIn { from{opacity:0} to{opacity:1} }
+
+    /* Breadcrumb */
+    .breadcrumb { padding:12px 0; font-size:0.8125rem; color:var(--text-3); }
+    .breadcrumb a { color:var(--text-2); text-decoration:none; }
+    .breadcrumb a:hover { color:var(--sams-blue); text-decoration:underline; }
+    .breadcrumb span { margin:0 6px; }
+
+    /* Hero help */
+    .help-hero {
+      background:var(--bg-gray); border-radius:var(--radius);
+      padding:32px 20px; text-align:center; margin-bottom:24px;
+    }
+    .help-hero h1 { font-size:1.5rem; font-weight:800; margin-bottom:20px; color:var(--text); }
+
+    /* Quick actions */
+    .help-actions {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+      max-width:680px; margin:0 auto 24px;
+    }
+    .help-action-card {
+      display:flex; flex-direction:column; align-items:center; gap:8px;
+      padding:20px 12px; background:var(--bg-card); border:1px solid var(--border-light);
+      border-radius:var(--radius); cursor:pointer; text-decoration:none; color:var(--text);
+      transition:transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+    }
+    .help-action-card:hover {
+      transform:translateY(-3px); box-shadow:0 4px 16px var(--shadow-md);
+      border-color:var(--sams-blue); text-decoration:none;
+    }
+    .help-action-card svg { width:32px; height:32px; fill:var(--sams-blue); }
+    .help-action-card span { font-size:0.8125rem; font-weight:600; text-align:center; }
+
+    /* Search help */
+    .help-search { max-width:680px; margin:0 auto 32px; }
+    .help-search label { display:block; font-size:0.875rem; font-weight:600; color:var(--text-2); margin-bottom:8px; }
+    .help-search-input {
+      width:100%; padding:12px 16px 12px 44px; border:1px solid var(--border);
+      border-radius:var(--radius); font-size:0.875rem; background:var(--bg-card);
+      color:var(--text); transition:border-color var(--ease);
+    }
+    .help-search-input:focus { outline:none; border-color:var(--sams-blue); }
+    .help-search-wrap { position:relative; }
+    .help-search-wrap svg {
+      position:absolute; left:14px; top:50%; transform:translateY(-50%);
+      width:18px; height:18px; fill:var(--text-3);
+    }
+
+    /* FAQ layout */
+    .faq-layout { display:grid; grid-template-columns:1fr; gap:24px; padding-bottom:32px; }
+    @media(min-width:768px) {
+      .faq-layout { grid-template-columns:250px 1fr; gap:32px; }
+    }
+
+    /* Sidebar */
+    .faq-sidebar { display:flex; flex-direction:column; gap:0; }
+    .faq-sidebar h2 { font-size:1.125rem; font-weight:700; margin-bottom:12px; color:var(--text); }
+    .faq-sidebar-item {
+      display:block; padding:12px 16px; font-size:0.875rem; color:var(--text-2);
+      border-radius:var(--radius-sm); cursor:pointer; text-decoration:none;
+      transition:background var(--ease), color var(--ease);
+    }
+    .faq-sidebar-item:hover { background:var(--bg-gray); color:var(--text); text-decoration:none; }
+    .faq-sidebar-item.active {
+      background:var(--sams-blue); color:#fff; font-weight:600;
+    }
+    .faq-sidebar-item.active:hover { background:var(--sams-hover); }
+
+    /* FAQ content */
+    .faq-content h2 { font-size:1.25rem; font-weight:700; margin-bottom:16px; color:var(--text); }
+
+    /* Accordion */
+    .faq-item {
+      border-bottom:1px solid var(--border-light);
+      transition:background var(--ease);
+    }
+    .faq-question {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 0; cursor:pointer; gap:12px;
+      font-size:0.9375rem; font-weight:600; color:var(--text);
+      transition:color var(--ease);
+    }
+    .faq-question:hover { color:var(--sams-blue); }
+    .faq-question svg {
+      width:20px; height:20px; fill:var(--text-3); flex-shrink:0;
+      transition:transform var(--ease-slow);
+    }
+    .faq-item.open .faq-question svg { transform:rotate(90deg); }
+    .faq-answer {
+      max-height:0; overflow:hidden;
+      transition:max-height var(--ease-slow), padding var(--ease-slow);
+    }
+    .faq-item.open .faq-answer { max-height:300px; }
+    .faq-answer p {
+      padding:0 0 16px; font-size:0.875rem; color:var(--text-2); line-height:1.7;
+    }
+
+    /* Chat button */
+    .chat-fab {
+      position:fixed; bottom:calc(var(--bottom-h) + 80px); right:16px;
+      z-index:290; background:#1a73e8; color:#fff; border:none;
+      padding:12px 20px; border-radius:var(--radius-full);
+      font-weight:600; font-size:0.875rem; cursor:pointer;
+      display:flex; align-items:center; gap:8px;
+      box-shadow:0 4px 16px rgba(0,0,0,0.2);
+      transition:background var(--ease), transform var(--ease);
+    }
+    .chat-fab:hover { background:#1557b0; transform:scale(1.04); }
+    .chat-fab svg { width:20px; height:20px; fill:#fff; }
+    @media(min-width:1024px) { .chat-fab { bottom:88px; right:24px; } }
+
+    /* Mobile: sidebar becomes horizontal scroll */
+    @media(max-width:767px) {
+      .faq-sidebar {
+        flex-direction:row; overflow-x:auto; gap:8px;
+        padding-bottom:8px; scrollbar-width:none;
+        -webkit-overflow-scrolling:touch;
+      }
+      .faq-sidebar::-webkit-scrollbar { display:none; }
+      .faq-sidebar h2 { display:none; }
+      .faq-sidebar-item { white-space:nowrap; flex-shrink:0; border:1px solid var(--border); border-radius:var(--radius-full); padding:8px 16px; font-size:0.8125rem; }
+      .faq-sidebar-item.active { border-color:var(--sams-blue); }
+      .help-actions { grid-template-columns:1fr 1fr 1fr; gap:8px; }
+      .help-action-card { padding:14px 8px; }
+      .help-action-card svg { width:24px; height:24px; }
+      .help-action-card span { font-size:0.75rem; }
+      .help-hero h1 { font-size:1.25rem; }
+    }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Saltar al contenido principal</a>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar">
+  ¡Aprovecha! Hasta 30% en Vinos y Licores Del 13 al 19 de marzo 2026
+  <a href="#">Ver más ></a>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </button>
+    <a href="../index.html" class="logo" aria-label="Sam's Club inicio">
+      <span class="logo-text">sam's club</span>
+      <span class="logo-bracket">&lt;&gt;</span>
+    </a>
+    <nav class="header-nav">
+      <div class="nav-dropdown">
+        <a href="#" class="header-nav__link header-nav__link--dropdown">
+          <svg viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+          Departamentos <svg class="nav-dropdown__caret" viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+        </a>
+        <div class="nav-dropdown__panel">
+          <a href="busqueda.html">Electrónica</a><a href="busqueda.html">Hogar</a>
+          <a href="busqueda.html">Alimentos</a><a href="busqueda.html">Farmacia</a>
+          <a href="busqueda.html">Tecnología</a><a href="busqueda.html">Moda</a>
+        </div>
+      </div>
+      <a href="beneficios.html" class="header-nav__link">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        Beneficios
+      </a>
+    </nav>
+    <div class="search-wrap" role="search">
+      <input type="search" placeholder="Buscar en Sam's Club en línea o en tienda" aria-label="Buscar productos">
+      <button class="search-btn" aria-label="Buscar">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      </button>
+    </div>
+    <div class="header-actions">
+      <a href="listas.html" class="h-action h-action--mobile-hide" aria-label="Tus productos">
+        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <span class="h-action__label">Tus productos</span>
+      </a>
+      <a href="login.html" class="h-action h-action--mobile-hide" aria-label="Cuenta">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        <span class="h-action__label">Cuenta</span>
+      </a>
+      <a href="carrito.html" class="h-action h-action--mobile-hide" aria-label="Carrito">
+        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        <span class="cart-badge">0</span>
+        <span class="h-action__label">$0.00</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- SECONDARY BAR -->
+<div class="secondary-bar">
+  <div class="secondary-inner">
+    <div class="sec-left">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+      <span>Monterrey, 64349</span>
+      <span>Sam's Club Cumbres, Mty</span>
+    </div>
+    <div class="sec-links">
+      <a href="#">Cuponera</a><a href="#">Hazte Socio</a><a href="faq.html">Ayuda</a>
+      <a href="#">Socio de Negocio</a><a href="#">Member's Mark</a><a href="#">Facturar</a>
+      <a href="#">Encuentra tu Club</a>
+    </div>
+  </div>
+</div>
+
+<main id="main" class="container" style="padding-top:16px;">
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">Sam's Club</a><span>/</span>
+    <a href="faq.html">Centro de ayuda</a><span>/</span>
+    <strong>Cancelaciones y Devoluciones</strong>
+  </nav>
+
+  <!-- Hero -->
+  <div class="help-hero">
+    <h1>Hola, ¿En qué podemos ayudarte?</h1>
+    <div class="help-actions">
+      <a href="#" class="help-action-card">
+        <svg viewBox="0 0 24 24"><path d="M18 18.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm1.5-9H17V12h4.46L19.5 9.5zM6 18.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5zM20 8l3 4v5h-2c0 1.66-1.34 3-3 3s-3-1.34-3-3H9c0 1.66-1.34 3-3 3s-3-1.34-3-3H1V6c0-1.11.89-2 2-2h14v4h3zM3 6v9h.76c.55-.61 1.35-1 2.24-1s1.69.39 2.24 1H15V6H3z"/></svg>
+        <span>Rastrea tu Pedido</span>
+      </a>
+      <a href="#" class="help-action-card">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+        <span>¿Cómo hacer una devolución?</span>
+      </a>
+      <a href="#" class="help-action-card">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        <span>Legales</span>
+      </a>
+    </div>
+    <div class="help-search">
+      <label>Buscar temas de ayuda</label>
+      <div class="help-search-wrap">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" class="help-search-input" placeholder="¿Con qué necesitas ayuda?" aria-label="Buscar temas de ayuda">
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ layout -->
+  <div class="faq-layout">
+    <!-- Sidebar -->
+    <nav class="faq-sidebar" aria-label="Categorías de ayuda">
+      <h2>Temas de ayuda</h2>
+      <a href="#" class="faq-sidebar-item active" onclick="switchCategory(this,'cat-cancelaciones');return false;">Cancelaciones y Devoluciones</a>
+      <a href="#" class="faq-sidebar-item" onclick="switchCategory(this,'cat-envios');return false;">Envíos y tiempos de entrega</a>
+      <a href="#" class="faq-sidebar-item" onclick="switchCategory(this,'cat-pagos');return false;">Pagos</a>
+      <a href="#" class="faq-sidebar-item" onclick="switchCategory(this,'cat-precios');return false;">Precios y Promociones</a>
+      <a href="#" class="faq-sidebar-item" onclick="switchCategory(this,'cat-cuenta');return false;">Tu cuenta</a>
+      <a href="#" class="faq-sidebar-item" onclick="switchCategory(this,'cat-membresia');return false;">Tu membresía</a>
+      <a href="#" class="faq-sidebar-item" onclick="switchCategory(this,'cat-pedidos');return false;">Tus pedidos</a>
+      <a href="#" class="faq-sidebar-item" onclick="switchCategory(this,'cat-compras');return false;">¿Cómo activar tus compras por internet?</a>
+    </nav>
+
+    <!-- Content -->
+    <div class="faq-content">
+      <!-- Cancelaciones y Devoluciones -->
+      <div id="cat-cancelaciones" class="faq-category">
+        <h2>Cancelaciones y Devoluciones</h2>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>Devoluciones</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>En Sam's Club, aceptamos devoluciones dentro de los primeros 30 días después de la compra. El producto debe estar en su empaque original y en buenas condiciones. Presenta tu ticket o factura para agilizar el proceso. Las devoluciones se pueden hacer en cualquier club o solicitarlas en línea desde tu cuenta.</p></div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>Cancelación de pedidos</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>Puedes cancelar tu pedido en línea siempre y cuando no haya sido enviado. Ingresa a tu cuenta, selecciona el pedido y haz clic en "Cancelar pedido". Si el pedido ya fue enviado, deberás esperar a recibirlo y solicitar una devolución.</p></div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>Problemas con mi pedido</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>Si recibiste un producto dañado, incorrecto o incompleto, contáctanos dentro de las 48 horas posteriores a la entrega. Puedes reportarlo desde tu cuenta en la sección "Mis pedidos" o llamar a nuestro centro de atención al cliente.</p></div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>Garantías</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>Los productos electrónicos y electrodomésticos incluyen garantía del fabricante. Adicionalmente, puedes adquirir la Garantía Extendida de Sam's Club al momento de tu compra para obtener cobertura adicional de hasta 3 años.</p></div>
+        </div>
+      </div>
+
+      <!-- Envíos -->
+      <div id="cat-envios" class="faq-category" style="display:none;">
+        <h2>Envíos y tiempos de entrega</h2>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>¿Cuánto tarda mi envío?</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>Los tiempos de entrega varían según tu ubicación y el tipo de producto. Generalmente los envíos estándar tardan de 3 a 7 días hábiles. Los productos grandes como muebles y electrodomésticos pueden tardar de 7 a 14 días hábiles.</p></div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>¿El envío tiene costo?</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>El envío es gratis en compras superiores a $2,000. Los socios Plus disfrutan de envío gratis sin monto mínimo en pedidos participantes. Para compras menores a $2,000, el costo de envío se calcula al momento del checkout.</p></div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>¿Puedo recoger en club?</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>Sí, puedes seleccionar la opción "Recoger en club" al momento de hacer tu pedido. Recibirás una notificación cuando tu pedido esté listo. El tiempo estimado de preparación es de 2 a 4 horas hábiles.</p></div>
+        </div>
+      </div>
+
+      <!-- Pagos -->
+      <div id="cat-pagos" class="faq-category" style="display:none;">
+        <h2>Pagos</h2>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>Métodos de pago aceptados</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>Aceptamos tarjetas de crédito y débito (Visa, Mastercard, American Express), transferencia bancaria (SPEI), pago en tiendas de conveniencia (OXXO, 7-Eleven) y PayPal. También puedes pagar con meses sin intereses con tarjetas participantes.</p></div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>¿Cómo pago a meses sin intereses?</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>Al momento del checkout, selecciona la opción de meses sin intereses. Las opciones disponibles (3, 6, 12 o 18 MSI) dependen del banco emisor de tu tarjeta y del monto de la compra. Consulta las promociones vigentes en nuestra sección de ofertas.</p></div>
+        </div>
+      </div>
+
+      <!-- Precios y Promociones -->
+      <div id="cat-precios" class="faq-category" style="display:none;">
+        <h2>Precios y Promociones</h2>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>¿Los precios en línea son iguales a los del club?</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>Los precios pueden variar entre la tienda en línea y el club físico. Algunos productos tienen precios especiales exclusivos para compras en línea. Los precios publicados en sitio ya incluyen los descuentos vigentes.</p></div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>¿Cómo uso mis cupones?</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>Ingresa el código del cupón en el campo "Código de descuento" durante el proceso de pago. El descuento se aplicará automáticamente al subtotal. Recuerda que los cupones tienen fecha de vigencia y condiciones específicas de uso.</p></div>
+        </div>
+      </div>
+
+      <!-- Tu cuenta -->
+      <div id="cat-cuenta" class="faq-category" style="display:none;">
+        <h2>Tu cuenta</h2>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>¿Cómo creo mi cuenta?</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>Haz clic en "Registrarse" en la esquina superior derecha. Ingresa tu nombre, correo electrónico y crea una contraseña. Una vez registrado, podrás vincular tu membresía de Sam's Club para acceder a precios exclusivos para socios.</p></div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>Olvidé mi contraseña</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>Haz clic en "¿Olvidaste tu contraseña?" en la página de inicio de sesión. Ingresa tu correo electrónico registrado y recibirás un enlace para restablecer tu contraseña. El enlace es válido por 24 horas.</p></div>
+        </div>
+      </div>
+
+      <!-- Tu membresía -->
+      <div id="cat-membresia" class="faq-category" style="display:none;">
+        <h2>Tu membresía</h2>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>¿Qué tipos de membresía hay?</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>Ofrecemos dos tipos: Membresía Benefits ($499/año) que incluye acceso a precios de socio y compras en línea, y Membresía Plus ($899/año) que agrega 2% de cashback, envío gratis ilimitado y acceso anticipado a ofertas exclusivas.</p></div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>¿Cómo renuevo mi membresía?</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>Puedes renovar tu membresía en línea desde tu cuenta, en cualquier club físico o llamando a nuestro centro de atención. La renovación se puede hacer hasta 60 días antes del vencimiento sin perder los días restantes.</p></div>
+        </div>
+      </div>
+
+      <!-- Tus pedidos -->
+      <div id="cat-pedidos" class="faq-category" style="display:none;">
+        <h2>Tus pedidos</h2>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>¿Cómo rastreo mi pedido?</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>Ingresa a tu cuenta y selecciona "Mis pedidos". Ahí podrás ver el estado actualizado de cada pedido, incluyendo el número de guía y el enlace de rastreo de la paquetería. También recibirás actualizaciones por correo electrónico.</p></div>
+        </div>
+      </div>
+
+      <!-- Compras por internet -->
+      <div id="cat-compras" class="faq-category" style="display:none;">
+        <h2>¿Cómo activar tus compras por internet?</h2>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question"><span>Primeros pasos para comprar en línea</span><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+          <div class="faq-answer"><p>1. Crea tu cuenta o inicia sesión. 2. Vincula tu membresía de Sam's Club. 3. Agrega productos al carrito. 4. Elige tu método de envío y pago. 5. Confirma tu pedido. ¡Listo! Recibirás una confirmación por correo electrónico.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Chat FAB -->
+<button class="chat-fab" aria-label="Abrir chat de ayuda" onclick="showToast('Chat no disponible en el prototipo')">
+  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+  Chat
+</button>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h3>Sam's Club</h3><a href="#">Sobre nosotros</a><a href="#">Trabaja con nosotros</a><a href="#">Responsabilidad social</a><a href="#">Aviso de privacidad</a></div>
+      <div class="footer-col"><h3>Compras</h3><a href="#">Membresías</a><a href="#">Ofertas</a><a href="#">Catálogo digital</a><a href="#">Tarjeta de regalo</a></div>
+      <div class="footer-col"><h3>Ayuda</h3><a href="faq.html">Preguntas frecuentes</a><a href="#">Devoluciones</a><a href="#">Rastrear pedido</a><a href="#">Contacto</a></div>
+      <div class="footer-col"><h3>Síguenos</h3><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">X (Twitter)</a><a href="#">YouTube</a></div>
+    </div>
+    <div class="footer-bottom">Sam's Club Mexico (pagina no oficial) | FCFM UANL | Juan Farias & Marco Sánchez</div>
+  </div>
+</footer>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" aria-label="Navegación rápida">
+  <a href="../index.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Inicio</span></a>
+  <a href="busqueda.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span>Buscar</span></a>
+  <a href="carrito.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span>Carrito</span></a>
+  <a href="login.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>Cuenta</span></a>
+</nav>
+
+<!-- ACCESSIBILITY PANEL -->
+<aside class="a11y-panel" role="dialog" aria-label="Accesibilidad">
+  <div class="a11y-head"><h2>Accesibilidad</h2><button class="a11y-close" onclick="toggleA11y()">X</button></div>
+  <div class="a11y-group"><div class="a11y-label">Apariencia</div>
+    <div class="toggle" data-tog="theme" onclick="toggleTheme()" role="switch" tabindex="0"><span class="toggle__text">Modo oscuro</span><div class="toggle__track"></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Tamaño de texto</div>
+    <div class="a11y-range"><input type="range" id="font-range" min="90" max="150" step="10" value="100" oninput="updateFont(this.value)" aria-label="Tamaño de texto">
+    <div class="a11y-range__vals"><span>90%</span><span id="font-val">100%</span><span>150%</span></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Contraste</div>
+    <div class="toggle" data-tog="contrast" onclick="toggleContrast()" role="switch" tabindex="0"><span class="toggle__text">Alto contraste</span><div class="toggle__track"></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Color</div>
+    <div class="toggle" data-tog="gray" onclick="toggleGray()" role="switch" tabindex="0"><span class="toggle__text">Blanco y negro</span><div class="toggle__track"></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Espaciado</div>
+    <div style="display:flex;gap:6px;">
+      <button onclick="setSpacing('normal')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Normal</button>
+      <button onclick="setSpacing('wide')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Amplio</button>
+      <button onclick="setSpacing('wider')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Muy amplio</button>
+    </div>
+  </div>
+  <button onclick="resetA11y()" style="width:100%;padding:10px;background:var(--bg-gray);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:0.8125rem;font-weight:600;margin-top:16px;cursor:pointer;">Restablecer todo</button>
+</aside>
+
+<button class="a11y-fab" onclick="toggleA11y()" aria-label="Abrir configuración de accesibilidad">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
+</button>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-menu"><div class="mm-head"><strong>¡Hola, Socio!</strong><span>Inicia sesión para ver tus beneficios</span></div>
+  <div class="mm-section"><a href="login.html" class="mm-item">Iniciar Sesion</a><a href="registro.html" class="mm-item">Registrarse</a></div>
+  <div class="mm-section"><a href="busqueda.html" class="mm-item">Electronica</a><a href="busqueda.html" class="mm-item">Hogar</a><a href="busqueda.html" class="mm-item">Alimentos</a><a href="busqueda.html" class="mm-item">Ropa</a><a href="busqueda.html" class="mm-item">Farmacia</a></div>
+  <div class="mm-section"><a href="#" class="mm-item" onclick="toggleTheme();toggleMenu();">Modo Oscuro</a><a href="#" class="mm-item" onclick="toggleA11y();toggleMenu();">Accesibilidad</a></div>
+</nav>
+
+<div class="overlay" onclick="closePanels()"></div>
+
+<script src="../js/main.js"></script>
+<script>
+function switchCategory(el, catId) {
+  document.querySelectorAll('.faq-sidebar-item').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.faq-category').forEach(c => c.style.display = 'none');
+  const cat = document.getElementById(catId);
+  if (cat) cat.style.display = 'block';
+}
+</script>
+</body>
+</html>

@@ -11,11 +11,11 @@
   <link rel="stylesheet" href="../css/styles.css">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:var(--font);color:var(--text);background:var(--bg);display:flex;flex-direction:column;min-height:100vh;transition:background var(--ease-slow),color var(--ease-slow);opacity:0;transform:translateY(12px);animation:pageFadeIn .24s ease forwards;}
+    body{font-family:var(--font);color:var(--text);background:var(--bg);display:flex;flex-direction:column;min-height:100vh;transition:background var(--ease-slow),color var(--ease-slow);animation:pageFadeIn .24s ease forwards;}
     a{color:var(--sams-blue);text-decoration:none;}
     a:hover{text-decoration:underline;}
 
-    @keyframes pageFadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes pageFadeIn{from{opacity:0;}to{opacity:1;}}
 
     /* Layout: logo centered top, form middle, footer bottom */
     .login-wrap{flex:1;display:flex;flex-direction:column;align-items:center;padding:48px 20px 32px;}
@@ -124,6 +124,7 @@
   </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Saltar al contenido principal</a>
   <div style="position:relative;">
     <button class="theme-corner" onclick="toggleTheme()" aria-label="Cambiar tema">
       <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
@@ -146,7 +147,7 @@
         <div class="form-group">
           <label class="form-label" for="email">Correo electrónico</label>
           <input class="form-input" type="email" id="email" placeholder="" autocomplete="email" aria-describedby="email-err" oninput="validateEmail()">
-          <div class="form-error" id="email-err">⚠ Ingresa un correo electrónico válido</div>
+          <div class="form-error" id="email-err">Ingresa un correo electrónico válido</div>
         </div>
         <button class="login-btn" id="btn-continue" onclick="continueToPassword()">Continuar</button>
       </div>
@@ -193,7 +194,7 @@
         </div>
         <div class="footer-col">
           <h3>Ayuda</h3>
-          <a href="#">Preguntas frecuentes</a><a href="#">Devoluciones</a>
+          <a href="faq.html">Preguntas frecuentes</a><a href="#">Devoluciones</a>
           <a href="#">Rastrear pedido</a><a href="#">Contacto</a>
         </div>
         <div class="footer-col">
@@ -225,7 +226,7 @@
 
   <div class="overlay" onclick="closePanels()"></div>
   <aside class="a11y-panel" role="dialog" aria-label="Accesibilidad">
-    <div class="a11y-head"><h2>♿ Accesibilidad</h2><button class="a11y-close" onclick="toggleA11y()">✕</button></div>
+    <div class="a11y-head"><h2>Accesibilidad</h2><button class="a11y-close" onclick="toggleA11y()">X</button></div>
     <div class="a11y-group"><div class="a11y-label">Apariencia</div>
       <div class="toggle" data-tog="theme" onclick="toggleTheme()" role="switch" tabindex="0"><span class="toggle__text">Modo oscuro</span><div class="toggle__track"></div></div>
     </div>

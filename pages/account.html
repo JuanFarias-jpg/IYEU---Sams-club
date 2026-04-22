@@ -13,8 +13,8 @@
     <style>
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         html{font-family:var(--font);font-size:16px;}
-        body{min-height:100vh;background:var(--bg);color:var(--text);line-height:1.5;transition:background var(--ease-slow),color var(--ease-slow);opacity:0;transform:translateY(12px);animation:pageFadeIn .24s ease forwards;}
-        @keyframes pageFadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+        body{min-height:100vh;background:var(--bg);color:var(--text);line-height:1.5;transition:background var(--ease-slow),color var(--ease-slow);animation:pageFadeIn .24s ease forwards;padding-bottom:var(--bottom-h);}
+        @keyframes pageFadeIn{from{opacity:0;}to{opacity:1;}}
         a{color:var(--sams-blue);text-decoration:none;}
         a:hover{text-decoration:underline;}
         button{font:inherit;cursor:pointer;border:none;background:none;color:inherit;}
@@ -82,6 +82,7 @@
     </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Saltar al contenido principal</a>
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce-bar">
     ¡Aprovecha! Hasta 30% en Vinos y Licores Del 13 al 19 de marzo 2026
@@ -105,7 +106,7 @@
             <a href="#" class="header-nav__link header-nav__link--dropdown">
                 <svg viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
                 Departamentos
-                <span class="nav-dropdown__caret">▾</span>
+                <svg class="nav-dropdown__caret" viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
             </a>
             <div class="nav-dropdown__panel">
                 <a href="busqueda.html">Electrónica</a>
@@ -130,21 +131,21 @@
     </div>
 
     <div class="header-actions">
-        <a href="#" class="h-action" aria-label="Tus productos">
+        <a href="listas.html" class="h-action h-action--mobile-hide" aria-label="Tus productos">
             <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>
             <span class="h-action__label">Vuelve a pedirlos</span>
             <span class="h-action__sub">Tus productos</span>
         </a>
-        <a href="login.html" class="h-action" aria-label="Cuenta">
+        <a href="login.html" class="h-action h-action--mobile-hide" aria-label="Cuenta">
             <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
             <span class="h-action__label">Iniciar sesión</span>
             <span class="h-action__sub">Cuenta</span>
         </a>
-        <a href="carrito.html" class="h-action" aria-label="Carrito" style="position:relative">
+        <a href="carrito.html" class="h-action h-action--mobile-hide" aria-label="Carrito" style="position:relative">
             <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
             <span class="cart-badge">0</span>
         </a>
-        <button class="h-action" onclick="toggleTheme()" aria-label="Cambiar tema">
+        <button class="h-action h-action--mobile-hide" onclick="toggleTheme()" aria-label="Cambiar tema">
             <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
         </button>
         </div>
@@ -164,7 +165,7 @@
         <div class="sec-links">
         <a href="#">Cuponera</a>
         <a href="#">Hazte Socio</a>
-        <a href="#">Ayuda</a>
+        <a href="faq.html">Ayuda</a>
         <a href="#">Socio de Negocio</a>
         <a href="#">Member's Mark</a>
         <a href="#">Facturar</a>
@@ -253,21 +254,21 @@
             <div class="order-item">
                 <div class="order-info">
                     <strong>Orden #4512</strong>
-                    <span>En preparación · Taller Sam's Club Cumbres</span>
+                    <span>En preparación - Taller Sam's Club Cumbres</span>
                 </div>
                 <div class="order-status">En camino</div>
             </div>
             <div class="order-item">
                 <div class="order-info">
                     <strong>Orden #4478</strong>
-                    <span>Entregado · 04 abr 2026</span>
+                    <span>Entregado - 04 abr 2026</span>
                 </div>
                 <div class="order-status">Entregado</div>
             </div>
             <div class="order-item">
                 <div class="order-info">
                     <strong>Orden #4431</strong>
-                    <span>Programado para recogida · 11 abr 2026</span>
+                    <span>Programado para recogida - 11 abr 2026</span>
                 </div>
                 <div class="order-status">Recogida</div>
             </div>
@@ -296,7 +297,7 @@
                 </div>
                 <div class="footer-col">
                     <h3>Ayuda</h3>
-                    <a href="#">Preguntas frecuentes</a><a href="#">Devoluciones</a>
+                    <a href="faq.html">Preguntas frecuentes</a><a href="#">Devoluciones</a>
                     <a href="#">Rastrear pedido</a><a href="#">Contacto</a>
                 </div>
                 <div class="footer-col">
@@ -320,7 +321,7 @@
 
     <!-- ===== ACCESSIBILITY PANEL ===== -->
     <aside class="a11y-panel" role="dialog" aria-label="Accesibilidad">
-        <div class="a11y-head"><h2>♿ Accesibilidad</h2><button class="a11y-close" onclick="toggleA11y()">✕</button></div>
+        <div class="a11y-head"><h2>Accesibilidad</h2><button class="a11y-close" onclick="toggleA11y()">X</button></div>
         <div class="a11y-group"><div class="a11y-label">Apariencia</div>
             <div class="toggle" data-tog="theme" onclick="toggleTheme()" role="switch" tabindex="0"><span class="toggle__text">Modo oscuro</span><div class="toggle__track"></div></div>
         </div>
@@ -351,9 +352,9 @@
     </button>
 
     <nav class="mobile-menu"><div class="mm-head"><strong>¡Hola, Socio!</strong><span>Inicia sesión para ver tus beneficios</span></div>
-        <div class="mm-section"><a href="login.html" class="mm-item">🔑 Iniciar Sesión</a><a href="#" class="mm-item">📝 Registrarse</a></div>
-        <div class="mm-section"><a href="busqueda.html" class="mm-item">📱 Electrónica</a><a href="busqueda.html" class="mm-item">🏠 Hogar</a><a href="busqueda.html" class="mm-item">🍎 Alimentos</a><a href="busqueda.html" class="mm-item">👕 Ropa</a><a href="busqueda.html" class="mm-item">💊 Farmacia</a></div>
-        <div class="mm-section"><a href="#" class="mm-item" onclick="toggleTheme();toggleMenu();">🌓 Modo Oscuro</a><a href="#" class="mm-item" onclick="toggleA11y();toggleMenu();">♿ Accesibilidad</a></div>
+        <div class="mm-section"><a href="login.html" class="mm-item">Iniciar Sesion</a><a href="#" class="mm-item">Registrarse</a></div>
+        <div class="mm-section"><a href="busqueda.html" class="mm-item">Electronica</a><a href="busqueda.html" class="mm-item">Hogar</a><a href="busqueda.html" class="mm-item">Alimentos</a><a href="busqueda.html" class="mm-item">Ropa</a><a href="busqueda.html" class="mm-item">Farmacia</a></div>
+        <div class="mm-section"><a href="#" class="mm-item" onclick="toggleTheme();toggleMenu();">Modo Oscuro</a><a href="#" class="mm-item" onclick="toggleA11y();toggleMenu();">Accesibilidad</a></div>
     </nav>
     <div class="overlay" onclick="closePanels()"></div>
 

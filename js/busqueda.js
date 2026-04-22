@@ -1,4 +1,4 @@
-/* SAM'S CLUB REDESIGN — BÚSQUEDA / PRODUCTOS JS */
+/* SAM'S CLUB REDESIGN - BÚSQUEDA / PRODUCTOS JS */
 
 document.addEventListener('DOMContentLoaded', () => {
   initPills();
@@ -45,12 +45,12 @@ function handleSort(select) {
 }
 
 /* === VIEW TOGGLE (grid/list) === */
-function setView(mode) {
+function setView(mode, e) {
   const grid = document.querySelector('.products-grid');
   if (!grid) return;
 
   document.querySelectorAll('.view-toggle__btn').forEach(b => b.classList.remove('active'));
-  event.target.closest('.view-toggle__btn')?.classList.add('active');
+  e?.target?.closest('.view-toggle__btn')?.classList.add('active');
 
   if (mode === 'list') {
     grid.style.gridTemplateColumns = '1fr';
@@ -64,6 +64,6 @@ function toggleFilter(el) {
   el.classList.toggle('active');
   const checkbox = el.querySelector('.filter-checkbox');
   if (checkbox) {
-    checkbox.innerHTML = el.classList.contains('active') ? '✓' : '';
+    checkbox.innerHTML = el.classList.contains('active') ? '+' : '';
   }
 }

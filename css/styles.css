@@ -64,12 +64,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .header-inner {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 12px 16px;
+  gap: 12px;
+  padding: 10px 16px;
   max-width: var(--max-w);
   margin: 0 auto;
+  flex-wrap: wrap;
 }
-
+@media (min-width:1024px) {
+  .header-inner {
+    flex-wrap: nowrap;
+  }
+}
 /* Logo — SVG-style text  */
 .logo { display:flex; align-items:center; gap:6px; flex-shrink:0; color:#fff; text-decoration:none; }
 .logo-text {
@@ -85,7 +90,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .logo:hover .logo-bracket { color: var(--sams-yellow); }
 
 /* Nav links*/
-.header-nav { display:none; align-items:center; gap:4px; margin-left:8px; }
+.header-nav { display:none; align-items:center; gap:4px; margin-left:8px; margin-right:auto; }
 .header-nav__link {
   display:flex; align-items:center; gap:6px;
   color:rgba(255,255,255,0.9); font-size:0.8125rem; font-weight:500;
@@ -109,7 +114,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   border-radius: 14px;
   box-shadow: 0 18px 40px rgba(0,0,0,0.22);
   padding: 8px 0;
-  margin-top: 8px;
+  margin-top: 0;
+  padding-top: 16px;
   z-index: 50;
 }
 .nav-dropdown__panel a {
@@ -121,12 +127,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   transition: background var(--ease), color var(--ease);
 }
 .nav-dropdown__panel a:hover { background: rgba(255,255,255,0.08); color: var(--sams-yellow); }
-.nav-dropdown:hover .nav-dropdown__panel,
 .nav-dropdown.nav-dropdown--open .nav-dropdown__panel { display:block; }
 
 /* Search bar  */
 .search-wrap {
-  flex:1; position:relative; max-width:580px;
+  position:relative;
+  min-width:0;
+  flex-basis:100%;
+  max-width:100%;
+}
+@media (min-width:1024px) {
+  .search-wrap {
+    flex:1;
+    flex-basis:auto;
+    max-width:580px;
+  }
 }
 .search-wrap input {
   width:100%; padding:10px 48px 10px 16px;
@@ -150,7 +165,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .search-btn svg { width:18px; height:18px; fill:#fff; }
 
 /* Header right actions */
-.header-actions { display:flex; align-items:center; gap:4px; margin-left:auto; }
+.header-actions { display:flex; align-items:center; gap:4px; }
 .h-action {
   display:flex; flex-direction:column; align-items:center; gap:1px;
   color:#fff; font-size:0.6875rem; padding:6px 10px;
@@ -181,6 +196,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   width:44px; height:44px; color:#fff;
 }
 .menu-toggle svg { width:24px; height:24px; fill:#fff; }
+
+/* Hide header actions on mobile (visible in bottom nav) */
+.h-action--mobile-hide { display:none; }
+@media (min-width:1024px) {
+  .h-action--mobile-hide { display:flex; }
+}
 
 /* ==========================================
    SECONDARY BAR
@@ -524,8 +545,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
    ========================================== */
 .a11y-fab {
   position: fixed;
-  bottom: calc(var(--bottom-h) + 16px);
-  right: 16px;
+  bottom: 24px;
+  right: 24px;
   z-index: 300;
   width: 56px;
   height: 56px;
@@ -534,7 +555,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   color: #fff;
   border: none;
   cursor: pointer;
-  display: flex;
+  display: none; /* hidden by default (mobile-first) */
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 16px rgba(0,0,0,0.25);
@@ -550,12 +571,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 /* Hide FAB when panel is open */
 .a11y-panel.open ~ .a11y-fab,
-.a11y-fab.hidden { display: none; }
+.a11y-fab.hidden { display: none !important; }
 
+/* Show FAB only on desktop */
 @media (min-width:1024px) {
   .a11y-fab {
-    bottom: 24px;
-    right: 24px;
+    display: flex;
   }
 }
 

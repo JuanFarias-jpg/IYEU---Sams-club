@@ -11,14 +11,12 @@
     <link rel="stylesheet" href="../css/styles.css">
     <style>
         body {
-            opacity: 0;
-            transform: translateY(12px);
             animation: pageFadeIn .24s ease forwards;
         }
 
         @keyframes pageFadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .benefits-grid .promo-card,
@@ -47,7 +45,7 @@
         <a href="../index.html" class="logo" aria-label="Sam's Club inicio"><span class="logo-text">sam's club</span><span class="logo-bracket">&lt;&gt;</span></a>
         <nav class="header-nav">
         <div class="nav-dropdown">
-            <a href="#" class="header-nav__link header-nav__link--dropdown"><svg viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg> Departamentos <span class="nav-dropdown__caret">▾</span></a>
+            <a href="#" class="header-nav__link header-nav__link--dropdown"><svg viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg> Departamentos <svg class="nav-dropdown__caret" viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg></a>
             <div class="nav-dropdown__panel">
                 <a href="busqueda.html">Electrónica</a>
                 <a href="busqueda.html">Hogar</a>
@@ -57,17 +55,17 @@
                 <a href="busqueda.html">Moda</a>
             </div>
         </div>
-        <a href="beneficios.html" class="header-nav__link active"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6H7v-2h2V8h2v1h2v2h-2v6z"/></svg> Beneficios</a>
+        <a href="beneficios.html" class="header-nav__link active"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Beneficios</a>
         </nav>
         <div class="search-wrap" role="search">
             <input type="search" placeholder="Buscar en Sam's Club en línea o en tienda" aria-label="Buscar" value="Beneficios">
             <button class="search-btn" aria-label="Buscar"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
         </div>
         <div class="header-actions">
-            <a href="#" class="h-action" aria-label="Tus productos"><svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg><span class="h-action__sub">Tus productos</span></a>
-            <a href="login.html" class="h-action" aria-label="Cuenta"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span class="h-action__sub">Cuenta</span></a>
-            <a href="carrito.html" class="h-action" aria-label="Carrito" style="position:relative"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span class="cart-badge">0</span></a>
-            <button class="h-action" onclick="toggleTheme()" aria-label="Cambiar tema"><svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg></button>
+            <a href="listas.html" class="h-action h-action--mobile-hide" aria-label="Tus productos"><svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg><span class="h-action__sub">Tus productos</span></a>
+            <a href="login.html" class="h-action h-action--mobile-hide" aria-label="Cuenta"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span class="h-action__sub">Cuenta</span></a>
+            <a href="carrito.html" class="h-action h-action--mobile-hide" aria-label="Carrito" style="position:relative"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span class="cart-badge">0</span></a>
+            <button class="h-action h-action--mobile-hide" onclick="toggleTheme()" aria-label="Cambiar tema"><svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg></button>
         </div>
     </div>
 </header>
@@ -84,7 +82,7 @@
         <div class="sec-links">
             <a href="#">Cuponera</a>
             <a href="#">Hazte Socio</a>
-            <a href="#">Ayuda</a>
+            <a href="faq.html">Ayuda</a>
             <a href="#">Socio de Negocio</a>
             <a href="#">Member's Mark</a>
             <a href="#">Facturar</a>
@@ -173,7 +171,7 @@
             </div>
             <div class="footer-col">
                 <h3>Ayuda</h3>
-                <a href="#">Preguntas frecuentes</a><a href="#">Devoluciones</a>
+                <a href="faq.html">Preguntas frecuentes</a><a href="#">Devoluciones</a>
                 <a href="#">Rastrear pedido</a><a href="#">Contacto</a>
             </div>
             <div class="footer-col">
@@ -197,10 +195,40 @@
 
 <div class="mobile-menu">
     <div class="mm-head"><strong>¡Hola, Socio!</strong><span>Inicia sesión para ver tus beneficios</span></div>
-    <div class="mm-section"><a href="login.html" class="mm-item">🔑 Iniciar Sesión</a><a href="registro.html" class="mm-item">📝 Registrarse</a></div>
-    <div class="mm-section"><a href="busqueda.html" class="mm-item">📱 Electrónica</a><a href="busqueda.html" class="mm-item">🏠 Hogar</a><a href="busqueda.html" class="mm-item">🍎 Alimentos</a><a href="busqueda.html" class="mm-item">👕 Ropa</a><a href="busqueda.html" class="mm-item">💊 Farmacia</a></div>
-    <div class="mm-section"><a href="#" class="mm-item" onclick="toggleTheme();toggleMenu();">🌓 Modo Oscuro</a><a href="#" class="mm-item" onclick="toggleA11y();toggleMenu();">♿ Accesibilidad</a></div>
+    <div class="mm-section"><a href="login.html" class="mm-item">Iniciar Sesion</a><a href="registro.html" class="mm-item">Registrarse</a></div>
+    <div class="mm-section"><a href="busqueda.html" class="mm-item">Electronica</a><a href="busqueda.html" class="mm-item">Hogar</a><a href="busqueda.html" class="mm-item">Alimentos</a><a href="busqueda.html" class="mm-item">Ropa</a><a href="busqueda.html" class="mm-item">Farmacia</a></div>
+    <div class="mm-section"><a href="#" class="mm-item" onclick="toggleTheme();toggleMenu();">Modo Oscuro</a><a href="#" class="mm-item" onclick="toggleA11y();toggleMenu();">Accesibilidad</a></div>
 </div>
+
+<!-- ===== ACCESSIBILITY PANEL ===== -->
+<aside class="a11y-panel" role="dialog" aria-label="Accesibilidad">
+  <div class="a11y-head"><h2>Accesibilidad</h2><button class="a11y-close" onclick="toggleA11y()">X</button></div>
+  <div class="a11y-group"><div class="a11y-label">Apariencia</div>
+    <div class="toggle" data-tog="theme" onclick="toggleTheme()" role="switch" tabindex="0"><span class="toggle__text">Modo oscuro</span><div class="toggle__track"></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Tamaño de texto</div>
+    <div class="a11y-range"><input type="range" id="font-range" min="90" max="150" step="10" value="100" oninput="updateFont(this.value)" aria-label="Tamaño de texto">
+    <div class="a11y-range__vals"><span>90%</span><span id="font-val">100%</span><span>150%</span></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Contraste</div>
+    <div class="toggle" data-tog="contrast" onclick="toggleContrast()" role="switch" tabindex="0"><span class="toggle__text">Alto contraste</span><div class="toggle__track"></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Color</div>
+    <div class="toggle" data-tog="gray" onclick="toggleGray()" role="switch" tabindex="0"><span class="toggle__text">Blanco y negro</span><div class="toggle__track"></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Espaciado</div>
+    <div style="display:flex;gap:6px;">
+      <button onclick="setSpacing('normal')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Normal</button>
+      <button onclick="setSpacing('wide')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Amplio</button>
+      <button onclick="setSpacing('wider')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Muy amplio</button>
+    </div>
+  </div>
+  <button onclick="resetA11y()" style="width:100%;padding:10px;background:var(--bg-gray);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:0.8125rem;font-weight:600;margin-top:16px;cursor:pointer;">Restablecer todo</button>
+</aside>
+
+<button class="a11y-fab" onclick="toggleA11y()" aria-label="Abrir configuración de accesibilidad">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
+</button>
 
 <div class="overlay" onclick="closePanels()"></div>
 

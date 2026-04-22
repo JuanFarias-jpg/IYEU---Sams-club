@@ -1,4 +1,4 @@
-/* SAM'S CLUB REDESIGN — JS */
+/* SAM'S CLUB REDESIGN - JS */
 document.addEventListener('DOMContentLoaded',()=>{
   initTheme(); initHeader(); initMicro(); initA11y(); initOnboard(); initToasts(); initCarousels();
 });
@@ -40,13 +40,26 @@ function initHeader(){
   const dropdown = h.querySelector('.nav-dropdown');
   if(dropdown){
     const trigger = dropdown.querySelector('.header-nav__link--dropdown');
-    trigger?.addEventListener('click',e=>{
+    const panel = dropdown.querySelector('.nav-dropdown__panel');
+
+    // Abrir/cerrar con click en el trigger
+    trigger?.addEventListener('click', e => {
       e.preventDefault();
+      e.stopPropagation();
       dropdown.classList.toggle('nav-dropdown--open');
     });
-    document.addEventListener('click',e=>{
+
+    // Cerrar al hacer click fuera — pero solo si el click NO es dentro del panel
+    document.addEventListener('click', e => {
       if(!dropdown.classList.contains('nav-dropdown--open')) return;
-      if(!dropdown.contains(e.target)) dropdown.classList.remove('nav-dropdown--open');
+      if(!dropdown.contains(e.target)) {
+        dropdown.classList.remove('nav-dropdown--open');
+      }
+    });
+
+    // Evitar que clicks dentro del panel propaguen al document listener
+    panel?.addEventListener('click', e => {
+      e.stopPropagation();
     });
   }
 }
@@ -73,7 +86,7 @@ function initMicro(){
     btn.innerHTML='<svg viewBox="0 0 24 24" width="16" height="16"><path fill="#fff" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg> Agregado';
     const badge=document.querySelector('.cart-badge');
     if(badge){ badge.textContent=+badge.textContent+1; badge.classList.remove('bounce'); void badge.offsetWidth; badge.classList.add('bounce'); }
-    showToast('✓ Producto agregado al carrito','ok');
+    showToast('Producto agregado al carrito','ok');
     setTimeout(()=>{ btn.classList.remove('added'); btn.innerHTML=orig; },2200);
   });
 
@@ -85,7 +98,7 @@ function initMicro(){
     w.classList.toggle('active');
     w.style.transform='scale(1.3)';
     setTimeout(()=>w.style.transform='',200);
-    showToast(w.classList.contains('active')?'❤️ Agregado a tu lista':'Removido de tu lista');
+    showToast(w.classList.contains('active')?'Agregado a tu lista':'Removido de tu lista');
   });
 
   // Promo links go to product search
@@ -186,7 +199,7 @@ function resetA11y(){
   document.querySelectorAll('.toggle').forEach(t=>t.classList.remove('on'));
   const r=document.querySelector('#font-range'); if(r) r.value=100;
   const d=document.querySelector('#font-val'); if(d) d.textContent='100%';
-  showToast('✓ Configuración restablecida');
+  showToast('Configuracion restablecida');
 }
 
 /* === ONBOARDING === */
@@ -244,6 +257,7 @@ function closePanels(){
   document.querySelector('.mobile-menu')?.classList.remove('open');
   document.querySelector('.a11y-panel')?.classList.remove('open');
   document.querySelector('.overlay')?.classList.remove('on');
+  document.querySelector('.a11y-fab')?.classList.remove('hidden');
 }
 
 /* ESC */
@@ -251,7 +265,7 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){ closePanels(); obClose(); }
 });
 
-/* ========== PROMO CAROUSEL (only carousel 2 — promo grid) ========== */
+/* ========== PROMO CAROUSEL (only carousel 2 - promo grid) ========== */
 function initCarousels(){
   initOneCarousel('promoTrack2','promoDots2');
 }
