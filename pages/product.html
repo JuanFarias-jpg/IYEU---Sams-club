@@ -34,6 +34,9 @@
         .product-subtitle { font-size:0.95rem; color:var(--text-2); }
         .product-rating { display:flex; align-items:center; gap:8px; font-size:0.875rem; color:var(--text-2); }
         .product-rating svg { width:16px; height:16px; fill:var(--sams-yellow); }
+        .product-departments { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+        .dept-label { padding:4px 8px; background:var(--secondary-bg); border:1px solid var(--border-light); border-radius:var(--radius-sm); font-size:0.8rem; color:var(--text-2); cursor:default; transition:background 0.2s ease, color 0.2s ease; }
+        .dept-label:hover { background:var(--sams-blue); color:white; border-color:var(--sams-blue); }
         .product-price { display:flex; align-items:flex-end; gap:10px; flex-wrap:wrap; }
         .product-price strong { font-family:var(--mono); font-size:2.5rem; font-weight:900; color:var(--text); }
         .product-price small { font-size:1rem; color:var(--text-2); }
@@ -82,12 +85,12 @@
             <svg class="nav-dropdown__caret" viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
             </a>
             <div class="nav-dropdown__panel">
-            <a href="busqueda.html">Electrónica</a>
-            <a href="busqueda.html">Hogar</a>
-            <a href="busqueda.html">Alimentos</a>
-            <a href="busqueda.html">Farmacia</a>
-            <a href="busqueda.html">Tecnología</a>
-            <a href="busqueda.html">Moda</a>
+                <a href="electronica.html">Electrónica</a>
+                <a href="hogar.html">Hogar</a>
+                <a href="alimentos.html">Alimentos</a>
+                <a href="farmacia.html">Farmacia</a>
+                <a href="tecnologia.html">Tecnología</a>
+                <a href="moda.html">Moda</a>
             </div>
         </div>
         <a href="beneficios.html" class="header-nav__link">
@@ -141,13 +144,17 @@
     <div class="container">
         <div class="product-hero">
             <div class="product-media">
-                <img src="/Images/tv.jpg" alt="Samsung Smart TV 55 pulgadas QLED 4K">
+                <img src="/Images/tv.png" alt="Samsung Smart TV 55 pulgadas QLED 4K">
             </div>
         <div class="product-meta">
             <span class="product-badge">Especial en línea</span>
         <div>
             <h1 class="product-title">Samsung Smart TV 55'' QLED 4K</h1>
             <p class="product-subtitle">Pantalla inteligente con HDR, Bixby y sonido envolvente para tu sala.</p>
+        </div>
+        <div class="product-departments">
+            <span class="dept-label" title="Electrónica">Electrónica</span>
+            <span class="dept-label" title="Tecnología">Tecnología</span>
         </div>
         <div class="product-rating">
             <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
@@ -206,7 +213,7 @@
                     <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg>
                 </button>
                 <div class="product-card__img">
-                    <div style="width:120px;height:120px;background:#e8f0fe;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:48px;">producto</div>
+                    <img src="/Images/HisenseSTV.png" alt="Hisense Smart TV 50 pulgadas" style="width:100%;height:100%;object-fit:contain;border-radius:8px;display:block;">
                 </div>
                 <div class="product-card__info">
                     <p class="product-card__name">LG Smart TV 65" OLED evo 4K 2025 con ThinQ AI webOS</p>
@@ -228,11 +235,11 @@
                     <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg>
                 </button>
                 <div class="product-card__img">
-                    <div style="width:120px;height:120px;background:#f0f5e8;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:48px;">producto</div>
+                    <img src="/Images/NS2.png" alt="Nintendo Switch 2 256GB Bundle Internacional" style="width:100%;height:100%;object-fit:contain;border-radius:8px;display:block;">
                 </div>
                 <div class="product-card__info">
-                    <p class="product-card__name">Hisense Smart TV 50" 4K QLED GDQ 2025 - Edición Especial</p>
-                    <div class="product-card__price">$9,499 <span class="product-card__price-old">$13,999</span></div>
+                    <p class="product-card__name">Nintendo Switch 2 256GB Bundle Internacional Juego Físico Super Mario Galaxy</p>
+                    <div class="product-card__price">$9,349 <span class="product-card__price-old">$11,999</span></div>
                     <div class="product-card__shipping">Envío sin costo</div>
                 </div>
                 <button class="add-btn">
@@ -250,11 +257,11 @@
                     <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg>
                 </button>
                 <div class="product-card__img">
-                    <div style="width:120px;height:120px;background:#e0eef8;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:48px;">producto</div>
+                    <img src="/Images/SBarra de Sonido.png" alt="Samsung Barra de Sonido HW-Q990D 11.1.4 con Dolby Atmos" style="width:100%;height:100%;object-fit:contain;border-radius:8px;display:block;">
                 </div>
                 <div class="product-card__info">
-                    <p class="product-card__name">LG Smart TV 100" QNED MiniLED 4K 2025 con webOS</p>
-                    <div class="product-card__price">$54,999 <span class="product-card__price-old">$69,999</span></div>
+                    <p class="product-card__name">Samsung Barra de Sonido HW-Q990D 11.1.4 con Dolby Atmos</p>
+                    <div class="product-card__price">$16,499 <span class="product-card__price-old">$22,999</span></div>
                     <div class="product-card__shipping">Envío sin costo</div>
                 </div>
                 <button class="add-btn">
