@@ -1,4 +1,4 @@
-/* SAM'S CLUB REDESIGN - JS */
+/* sams.com.mx - JS */
 document.addEventListener('DOMContentLoaded',()=>{
   initTheme(); initHeader(); initMicro(); initA11y(); initOnboard(); initToasts(); initCarousels();
 });
@@ -17,7 +17,10 @@ function toggleTheme(){
   const n=c==='dark'?'light':'dark';
   document.documentElement.setAttribute('data-theme',n);
   localStorage.setItem('sams-theme',n);
-  document.querySelectorAll('[data-tog="theme"]').forEach(el=>el.classList.toggle('on',n==='dark'));
+  document.querySelectorAll('[data-tog="theme"]').forEach(el=>{
+    el.classList.toggle('on',n==='dark');
+    el.setAttribute('aria-checked', n==='dark' ? 'true' : 'false');
+  });
 }
 
 /* === HEADER === */
@@ -41,23 +44,17 @@ function initHeader(){
   if(dropdown){
     const trigger = dropdown.querySelector('.header-nav__link--dropdown');
     const panel = dropdown.querySelector('.nav-dropdown__panel');
-
-    // Abrir/cerrar con click en el trigger
     trigger?.addEventListener('click', e => {
       e.preventDefault();
       e.stopPropagation();
       dropdown.classList.toggle('nav-dropdown--open');
     });
-
-    // Cerrar al hacer click fuera — pero solo si el click NO es dentro del panel
     document.addEventListener('click', e => {
       if(!dropdown.classList.contains('nav-dropdown--open')) return;
       if(!dropdown.contains(e.target)) {
         dropdown.classList.remove('nav-dropdown--open');
       }
     });
-
-    // Evitar que clicks dentro del panel propaguen al document listener
     panel?.addEventListener('click', e => {
       e.stopPropagation();
     });
@@ -157,6 +154,13 @@ function initA11y(){
   });
   const r=document.querySelector('#font-range');
   if(r){ r.value=localStorage.getItem('sams-font-scale')||'100'; }
+  // Sync aria-checked state on load
+  const isDark = document.documentElement.getAttribute('data-theme')==='dark';
+  const isHigh = document.documentElement.getAttribute('data-contrast')==='high';
+  const isGray = document.documentElement.getAttribute('data-grayscale')==='true';
+  document.querySelectorAll('[data-tog="theme"]').forEach(el=>el.setAttribute('aria-checked', isDark?'true':'false'));
+  document.querySelectorAll('[data-tog="contrast"]').forEach(el=>el.setAttribute('aria-checked', isHigh?'true':'false'));
+  document.querySelectorAll('[data-tog="gray"]').forEach(el=>el.setAttribute('aria-checked', isGray?'true':'false'));
 }
 function toggleA11y(){
   const panel = document.querySelector('.a11y-panel');
@@ -177,13 +181,19 @@ function toggleContrast(){
   const c=document.documentElement.getAttribute('data-contrast')==='high'?'':'high';
   document.documentElement.setAttribute('data-contrast',c);
   localStorage.setItem('sams-contrast',c||'normal');
-  document.querySelectorAll('[data-tog="contrast"]').forEach(el=>el.classList.toggle('on',c==='high'));
+  document.querySelectorAll('[data-tog="contrast"]').forEach(el=>{
+    el.classList.toggle('on',c==='high');
+    el.setAttribute('aria-checked', c==='high' ? 'true' : 'false');
+  });
 }
 function toggleGray(){
   const c=document.documentElement.getAttribute('data-grayscale')==='true'?'false':'true';
   document.documentElement.setAttribute('data-grayscale',c);
   localStorage.setItem('sams-grayscale',c);
-  document.querySelectorAll('[data-tog="gray"]').forEach(el=>el.classList.toggle('on',c==='true'));
+  document.querySelectorAll('[data-tog="gray"]').forEach(el=>{
+    el.classList.toggle('on',c==='true');
+    el.setAttribute('aria-checked', c==='true' ? 'true' : 'false');
+  });
 }
 function setSpacing(v){
   document.documentElement.setAttribute('data-spacing',v);

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crea tu cuenta en Sam's Club Mexico y empieza a disfrutar precios exclusivos, beneficios de socio y compras en linea.">
   <title>Regístrate | Sam's Club</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,7 +104,7 @@
         <button class="social-btn">Apple</button>
       </div>
       <div style="margin-top:20px;text-align:center;font-size:0.9rem;color:var(--text-2);">
-        ¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a>
+        ¿Ya tienes cuenta? <a href="login.html" style="color:var(--sams-blue);text-decoration:underline;font-weight:600;">Inicia sesión</a>
       </div>
     </div>
   </main>
@@ -119,17 +120,17 @@
   <aside class="a11y-panel" role="dialog" aria-label="Accesibilidad">
     <div class="a11y-head"><h2>Accesibilidad</h2><button class="a11y-close" onclick="toggleA11y()">X</button></div>
     <div class="a11y-group"><div class="a11y-label">Apariencia</div>
-      <div class="toggle" data-tog="theme" onclick="toggleTheme()" role="switch" tabindex="0"><span class="toggle__text">Modo oscuro</span><div class="toggle__track"></div></div>
+      <div class="toggle" data-tog="theme" onclick="toggleTheme()" role="switch" tabindex="0" aria-checked="false"><span class="toggle__text">Modo oscuro</span><div class="toggle__track"></div></div>
     </div>
     <div class="a11y-group"><div class="a11y-label">Tamaño de texto</div>
       <div class="a11y-range"><input type="range" id="font-range" min="90" max="150" step="10" value="100" oninput="updateFont(this.value)" aria-label="Tamaño de texto">
       <div class="a11y-range__vals"><span>90%</span><span id="font-val">100%</span><span>150%</span></div></div>
     </div>
     <div class="a11y-group"><div class="a11y-label">Contraste</div>
-      <div class="toggle" data-tog="contrast" onclick="toggleContrast()" role="switch" tabindex="0"><span class="toggle__text">Alto contraste</span><div class="toggle__track"></div></div>
+      <div class="toggle" data-tog="contrast" onclick="toggleContrast()" role="switch" tabindex="0" aria-checked="false"><span class="toggle__text">Alto contraste</span><div class="toggle__track"></div></div>
     </div>
     <div class="a11y-group"><div class="a11y-label">Color</div>
-      <div class="toggle" data-tog="gray" onclick="toggleGray()" role="switch" tabindex="0"><span class="toggle__text">Blanco y negro</span><div class="toggle__track"></div></div>
+      <div class="toggle" data-tog="gray" onclick="toggleGray()" role="switch" tabindex="0" aria-checked="false"><span class="toggle__text">Blanco y negro</span><div class="toggle__track"></div></div>
     </div>
     <div class="a11y-group"><div class="a11y-label">Espaciado</div>
       <div style="display:flex;gap:6px;">

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Administra tu cuenta de Sam's Club: pedidos, membresia, listas de compras y preferencias personales.">
     <title>Mi cuenta | Sam's Club</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +14,7 @@
     <style>
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         html{font-family:var(--font);font-size:16px;}
-        body{min-height:100vh;background:var(--bg);color:var(--text);line-height:1.5;transition:background var(--ease-slow),color var(--ease-slow);animation:pageFadeIn .24s ease forwards;padding-bottom:var(--bottom-h);}
+        body{min-height:100vh;background:var(--bg);color:var(--text);line-height:1.5;transition:background var(--ease-slow),color var(--ease-slow);opacity:0;animation:pageFadeIn .24s ease forwards;padding-bottom:var(--bottom-h);overflow-x:hidden;}
         @keyframes pageFadeIn{from{opacity:0;}to{opacity:1;}}
         a{color:var(--sams-blue);text-decoration:none;}
         a:hover{text-decoration:underline;}
@@ -78,7 +79,82 @@
             .logout-btn{width:100%;justify-content:center;}
         }
     @media (min-width:720px){.action-grid{grid-template-columns:repeat(4,minmax(0,1fr));}.profile-info{grid-template-columns:repeat(4,minmax(0,1fr));}}
-    @media (min-width:1024px){.page-shell{padding:32px 24px 96px;}}  
+    @media (min-width:1024px){.page-shell{padding:32px 24px 96px;}}
+
+    /* ── Dashboard: Gráfica de barras ── */
+    .dash-bar-wrap{display:flex;align-items:flex-end;gap:10px;height:120px;padding:0 4px;}
+    .dash-bar{flex:1;height:var(--h);background:var(--border);border-radius:6px 6px 0 0;position:relative;cursor:pointer;transition:background .2s,transform .2s;}
+    .dash-bar::after{content:attr(data-label);position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:0.7rem;color:var(--text-3);white-space:nowrap;}
+    .dash-bar::before{content:attr(data-val);position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:0.7rem;color:var(--text-2);white-space:nowrap;opacity:0;transition:opacity .2s;}
+    .dash-bar:hover{background:var(--sams-blue);transform:scaleY(1.03);transform-origin:bottom;}
+    .dash-bar:hover::before{opacity:1;}
+    .dash-bar--current{background:var(--sams-blue) !important;}
+    .dash-bar--current::before{opacity:1;}
+    .dash-bar-chart{padding-bottom:30px;margin-bottom:8px;}
+    .dash-legend{display:flex;align-items:center;gap:8px;font-size:0.8125rem;color:var(--text-2);flex-wrap:wrap;}
+    .dash-legend__dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+    /* ── Dashboard: Stat cards ── */
+    .dash-stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+    @media(min-width:720px){.dash-stats-grid{grid-template-columns:repeat(4,1fr);}}
+    .dash-stat-card{display:flex;flex-direction:column;gap:10px;padding:16px !important;}
+    .dash-stat-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .dash-stat-val{font-size:1.4rem;font-weight:800;color:var(--text);}
+    .dash-stat-label{font-size:0.75rem;color:var(--text-3);margin-top:2px;}
+    .dash-stat-bar-wrap{height:4px;background:var(--border);border-radius:4px;overflow:hidden;}
+    .dash-stat-bar{height:100%;border-radius:4px;transition:width .6s ease;}
+
+    /* ── Dashboard: Productos frecuentes ── */
+    .freq-list{display:grid;gap:12px;}
+    .freq-item{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--border);}
+    .freq-item:last-child{border-bottom:none;padding-bottom:0;}
+    .freq-img{width:52px;height:52px;border-radius:8px;flex-shrink:0;}
+    .freq-info{flex:1;min-width:0;}
+    .freq-info strong{display:block;font-size:0.875rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .freq-info span{display:block;font-size:0.75rem;color:var(--text-3);margin-top:3px;}
+    .freq-add-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--sams-blue);color:#fff;border-radius:6px;font-size:0.8rem;font-weight:600;flex-shrink:0;transition:background .2s,transform .1s;}
+    .freq-add-btn:hover{background:var(--sams-dark);}
+    .freq-add-btn:active{transform:scale(0.96);}
+
+    /* ── Dashboard dinámico con tabs ── */
+    .dash-tabs{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:20px;overflow-x:auto;scrollbar-width:none;}
+    .dash-tabs::-webkit-scrollbar{display:none;}
+    .dash-tab{padding:10px 18px;font-size:0.875rem;font-weight:600;color:var(--text-3);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer;white-space:nowrap;transition:color .2s,border-color .2s;}
+    .dash-tab.active{color:var(--sams-blue);border-bottom-color:var(--sams-blue);}
+    .dash-tab:hover:not(.active){color:var(--text);}
+    .dash-panel{display:none;animation:fadeIn .22s ease;}
+    .dash-panel.active{display:block;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+    /* Donut chart SVG */
+    .donut-wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+    .donut-svg{flex-shrink:0;}
+    .donut-legend{display:grid;gap:10px;flex:1;min-width:160px;}
+    .donut-leg-item{display:flex;align-items:center;gap:10px;font-size:0.8125rem;}
+    .donut-leg-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
+    .donut-leg-label{color:var(--text-2);flex:1;}
+    .donut-leg-val{font-weight:700;color:var(--text);}
+
+    /* Mini progress bars de categorías */
+    .cat-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+    .cat-row:last-child{margin-bottom:0;}
+    .cat-label{font-size:0.8125rem;color:var(--text-2);width:110px;flex-shrink:0;}
+    .cat-bar-wrap{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden;}
+    .cat-bar{height:100%;border-radius:4px;transition:width .7s ease;}
+    .cat-amount{font-size:0.8125rem;font-weight:700;color:var(--text);width:60px;text-align:right;flex-shrink:0;}
+
+    /* Membresía progress ring */
+    .membership-wrap{display:flex;gap:20px;flex-wrap:wrap;align-items:center;}
+    .membership-ring{position:relative;width:120px;height:120px;flex-shrink:0;}
+    .membership-ring svg{transform:rotate(-90deg);}
+    .ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+    .ring-label strong{font-size:1.3rem;font-weight:800;color:var(--text);}
+    .ring-label span{font-size:0.7rem;color:var(--text-3);margin-top:2px;}
+    .membership-info{flex:1;min-width:180px;display:grid;gap:10px;}
+    .memb-row{display:flex;justify-content:space-between;align-items:center;font-size:0.875rem;border-bottom:1px solid var(--border);padding-bottom:8px;}
+    .memb-row:last-child{border-bottom:none;padding-bottom:0;}
+    .memb-row span{color:var(--text-2);}
+    .memb-row strong{color:var(--text);}
     </style>
 </head>
 <body>
@@ -109,15 +185,15 @@
                 <svg class="nav-dropdown__caret" viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
             </a>
             <div class="nav-dropdown__panel">
-                <a href="electronica.html">Electrónica</a>
-                <a href="hogar.html">Hogar</a>
-                <a href="alimentos.html">Alimentos</a>
-                <a href="farmacia.html">Farmacia</a>
-                <a href="tecnologia.html">Tecnología</a>
-                <a href="moda.html">Moda</a>
+                <a href="../electronica.html">Electrónica</a>
+                <a href="../hogar.html">Hogar</a>
+                <a href="../alimentos.html">Alimentos</a>
+                <a href="../farmacia.html">Farmacia</a>
+                <a href="../tecnologia.html">Tecnología</a>
+                <a href="../moda.html">Moda</a>
             </div>
         </div>
-        <a href="beneficios.html" class="header-nav__link">
+        <a href="../beneficios.html" class="header-nav__link">
         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
         Beneficios
         </a>
@@ -131,21 +207,21 @@
     </div>
 
     <div class="header-actions">
-        <a href="listas.html" class="h-action h-action--mobile-hide" aria-label="Tus productos">
+        <a href="../listas.html" class="h-action" aria-label="Tus productos">
             <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>
             <span class="h-action__label">Vuelve a pedirlos</span>
             <span class="h-action__sub">Tus productos</span>
         </a>
-        <a href="login.html" class="h-action h-action--mobile-hide" aria-label="Cuenta">
+        <a href="../login.html" class="h-action" aria-label="Cuenta">
             <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
             <span class="h-action__label">Iniciar sesión</span>
             <span class="h-action__sub">Cuenta</span>
         </a>
-        <a href="carrito.html" class="h-action h-action--mobile-hide" aria-label="Carrito" style="position:relative">
+        <a href="../carrito.html" class="h-action" aria-label="Carrito" style="position:relative">
             <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
             <span class="cart-badge">0</span>
         </a>
-        <button class="h-action h-action--mobile-hide" onclick="toggleTheme()" aria-label="Cambiar tema">
+        <button class="h-action" onclick="toggleTheme()" aria-label="Cambiar tema">
             <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
         </button>
         </div>
@@ -165,7 +241,7 @@
         <div class="sec-links">
         <a href="#">Cuponera</a>
         <a href="#">Hazte Socio</a>
-        <a href="faq.html">Ayuda</a>
+        <a href="#">Ayuda</a>
         <a href="#">Socio de Negocio</a>
         <a href="#">Member's Mark</a>
         <a href="#">Facturar</a>
@@ -275,9 +351,232 @@
         </div>
     </section>
 
+    <!-- ===== DASHBOARD: GASTO MENSUAL ===== -->
+    <section class="account-section" id="dashboard-gasto">
+        <div class="section-heading">
+            <h2>Gasto mensual</h2>
+            <span style="font-size:0.8rem;color:var(--text-3);">Últimos 6 meses</span>
+        </div>
+        <div class="panel" style="padding:20px;">
+            <div class="dash-bar-chart" role="img" aria-label="Gráfica de gasto mensual">
+                <div class="dash-bar-wrap">
+                    <div class="dash-bar" style="--h:55%"  data-label="Nov" data-val="$2,100"></div>
+                    <div class="dash-bar" style="--h:72%"  data-label="Dic" data-val="$2,750"></div>
+                    <div class="dash-bar" style="--h:40%"  data-label="Ene" data-val="$1,520"></div>
+                    <div class="dash-bar" style="--h:88%"  data-label="Feb" data-val="$3,360"></div>
+                    <div class="dash-bar" style="--h:63%"  data-label="Mar" data-val="$2,400"></div>
+                    <div class="dash-bar dash-bar--current" style="--h:100%" data-label="Abr" data-val="$3,820"></div>
+                </div>
+            </div>
+            <div class="dash-legend">
+                <span class="dash-legend__dot" style="background:var(--sams-blue)"></span>
+                <span>Gasto total del mes actual: <strong>$3,820</strong></span>
+                <span style="margin-left:auto;color:var(--sams-green);font-weight:600;">+13% vs mes anterior</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DASHBOARD: AHORRO Y CASHBACK ===== -->
+    <section class="account-section" id="dashboard-ahorro">
+        <div class="section-heading">
+            <h2>Tu ahorro acumulado</h2>
+            <a href="../beneficios.html" class="section-link">Ver beneficios</a>
+        </div>
+        <div class="dash-stats-grid">
+            <div class="panel dash-stat-card">
+                <div class="dash-stat-icon" style="background:#e3f2fd;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="var(--sams-blue)"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                </div>
+                <div>
+                    <div class="dash-stat-val">$1,240</div>
+                    <div class="dash-stat-label">Cashback acumulado</div>
+                </div>
+                <div class="dash-stat-bar-wrap"><div class="dash-stat-bar" style="width:62%;background:var(--sams-blue)"></div></div>
+            </div>
+            <div class="panel dash-stat-card">
+                <div class="dash-stat-icon" style="background:#e8f5e9;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="var(--sams-green)"><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg>
+                </div>
+                <div>
+                    <div class="dash-stat-val">$4,520</div>
+                    <div class="dash-stat-label">Puntos disponibles</div>
+                </div>
+                <div class="dash-stat-bar-wrap"><div class="dash-stat-bar" style="width:45%;background:var(--sams-green)"></div></div>
+            </div>
+            <div class="panel dash-stat-card">
+                <div class="dash-stat-icon" style="background:#fff8e1;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="var(--sams-yellow)"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <div>
+                    <div class="dash-stat-val">$890</div>
+                    <div class="dash-stat-label">Ahorrado en descuentos</div>
+                </div>
+                <div class="dash-stat-bar-wrap"><div class="dash-stat-bar" style="width:30%;background:var(--sams-yellow)"></div></div>
+            </div>
+            <div class="panel dash-stat-card">
+                <div class="dash-stat-icon" style="background:#fce4ec;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="var(--sams-red)"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                </div>
+                <div>
+                    <div class="dash-stat-val">12</div>
+                    <div class="dash-stat-label">Compras este año</div>
+                </div>
+                <div class="dash-stat-bar-wrap"><div class="dash-stat-bar" style="width:80%;background:var(--sams-red)"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DASHBOARD: PRODUCTOS FRECUENTES ===== -->
+    <section class="account-section" id="dashboard-frecuentes">
+        <div class="section-heading">
+            <h2>Productos que compras seguido</h2>
+            <a href="../busqueda.html" class="section-link">Ver catálogo</a>
+        </div>
+        <div class="panel" style="padding:16px;">
+            <div class="freq-list">
+                <div class="freq-item">
+                    <div class="freq-img" style="background:#e8f0fe;"></div>
+                    <div class="freq-info">
+                        <strong>Agua Ciel 1L (Pack 24)</strong>
+                        <span>Última compra: 28 mar 2026</span>
+                    </div>
+                    <button class="freq-add-btn" aria-label="Agregar al carrito">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                        Agregar
+                    </button>
+                </div>
+                <div class="freq-item">
+                    <div class="freq-img" style="background:#f0f5e8;"></div>
+                    <div class="freq-info">
+                        <strong>Detergente Ariel 10kg</strong>
+                        <span>Última compra: 15 mar 2026</span>
+                    </div>
+                    <button class="freq-add-btn" aria-label="Agregar al carrito">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                        Agregar
+                    </button>
+                </div>
+                <div class="freq-item">
+                    <div class="freq-img" style="background:#fff8e1;"></div>
+                    <div class="freq-info">
+                        <strong>Aceite Nutrioli 3L</strong>
+                        <span>Última compra: 02 abr 2026</span>
+                    </div>
+                    <button class="freq-add-btn" aria-label="Agregar al carrito">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                        Agregar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DASHBOARD DINÁMICO (tabs) ===== -->
+    <section class="account-section" id="dashboard-dinamico" style="margin-top:8px;">
+        <div class="section-heading">
+            <h2>Mi resumen</h2>
+            <span style="font-size:0.8rem;color:var(--text-3);">Actualizado hoy</span>
+        </div>
+        <div class="panel" style="padding:20px;">
+
+            <!-- Tabs de navegación -->
+            <div class="dash-tabs" role="tablist" aria-label="Secciones del resumen">
+                <button class="dash-tab active" role="tab" aria-selected="true"  aria-controls="tab-categorias"  onclick="switchTab(this,'tab-categorias')">Gasto por categoría</button>
+                <button class="dash-tab"        role="tab" aria-selected="false" aria-controls="tab-membresia"   onclick="switchTab(this,'tab-membresia')">Membresía</button>
+                <button class="dash-tab"        role="tab" aria-selected="false" aria-controls="tab-proyeccion"  onclick="switchTab(this,'tab-proyeccion')">Proyección anual</button>
+            </div>
+
+            <!-- Panel 1: Gasto por categoría (donut + barras) -->
+            <div id="tab-categorias" class="dash-panel active" role="tabpanel">
+                <div class="donut-wrap">
+                    <!-- Donut SVG dibujado con stroke-dasharray -->
+                    <svg class="donut-svg" width="130" height="130" viewBox="0 0 42 42" aria-hidden="true">
+                        <circle cx="21" cy="21" r="15.91" fill="none" stroke="var(--border)" stroke-width="5"/>
+                        <!-- Electrónica 38% -->
+                        <circle cx="21" cy="21" r="15.91" fill="none" stroke="#0067a0" stroke-width="5"
+                            stroke-dasharray="38 62" stroke-dashoffset="0"/>
+                        <!-- Alimentos 27% -->
+                        <circle cx="21" cy="21" r="15.91" fill="none" stroke="#2e7d32" stroke-width="5"
+                            stroke-dasharray="27 73" stroke-dashoffset="-38"/>
+                        <!-- Hogar 20% -->
+                        <circle cx="21" cy="21" r="15.91" fill="none" stroke="#f5a623" stroke-width="5"
+                            stroke-dasharray="20 80" stroke-dashoffset="-65"/>
+                        <!-- Otros 15% -->
+                        <circle cx="21" cy="21" r="15.91" fill="none" stroke="#d32f2f" stroke-width="5"
+                            stroke-dasharray="15 85" stroke-dashoffset="-85"/>
+                        <text x="21" y="22" text-anchor="middle" font-size="5" font-weight="700" fill="var(--text)" dy=".3em">$3,820</text>
+                    </svg>
+                    <div class="donut-legend">
+                        <div class="donut-leg-item"><div class="donut-leg-dot" style="background:#0067a0"></div><span class="donut-leg-label">Electrónica</span><span class="donut-leg-val">$1,452</span></div>
+                        <div class="donut-leg-item"><div class="donut-leg-dot" style="background:#2e7d32"></div><span class="donut-leg-label">Alimentos</span><span class="donut-leg-val">$1,031</span></div>
+                        <div class="donut-leg-item"><div class="donut-leg-dot" style="background:#f5a623"></div><span class="donut-leg-label">Hogar</span><span class="donut-leg-val">$764</span></div>
+                        <div class="donut-leg-item"><div class="donut-leg-dot" style="background:#d32f2f"></div><span class="donut-leg-label">Otros</span><span class="donut-leg-val">$573</span></div>
+                    </div>
+                </div>
+                <div style="margin-top:20px;">
+                    <div class="cat-row"><span class="cat-label">Electrónica</span><div class="cat-bar-wrap"><div class="cat-bar" style="width:38%;background:#0067a0"></div></div><span class="cat-amount">$1,452</span></div>
+                    <div class="cat-row"><span class="cat-label">Alimentos</span><div class="cat-bar-wrap"><div class="cat-bar" style="width:27%;background:#2e7d32"></div></div><span class="cat-amount">$1,031</span></div>
+                    <div class="cat-row"><span class="cat-label">Hogar</span><div class="cat-bar-wrap"><div class="cat-bar" style="width:20%;background:#f5a623"></div></div><span class="cat-amount">$764</span></div>
+                    <div class="cat-row"><span class="cat-label">Otros</span><div class="cat-bar-wrap"><div class="cat-bar" style="width:15%;background:#d32f2f"></div></div><span class="cat-amount">$573</span></div>
+                </div>
+            </div>
+
+            <!-- Panel 2: Membresía -->
+            <div id="tab-membresia" class="dash-panel" role="tabpanel">
+                <div class="membership-wrap">
+                    <!-- Anillo de progreso de renovación -->
+                    <div class="membership-ring">
+                        <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="var(--border)" stroke-width="10"/>
+                            <!-- 72% del año transcurrido (263 de 365 días) -->
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="var(--sams-blue)" stroke-width="10"
+                                stroke-dasharray="226 88" stroke-linecap="round"/>
+                        </svg>
+                        <div class="ring-label">
+                            <strong>72%</strong>
+                            <span>del año</span>
+                        </div>
+                    </div>
+                    <div class="membership-info">
+                        <div class="memb-row"><span>Tipo de membresía</span><strong>Plus</strong></div>
+                        <div class="memb-row"><span>Inicio</span><strong>19 mar 2025</strong></div>
+                        <div class="memb-row"><span>Renovación</span><strong>19 mar 2026</strong></div>
+                        <div class="memb-row"><span>Cashback acumulado</span><strong style="color:var(--sams-green)">$1,240</strong></div>
+                        <div class="memb-row"><span>Beneficio restante</span><strong>$260 disponibles</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 3: Proyección anual -->
+            <div id="tab-proyeccion" class="dash-panel" role="tabpanel">
+                <p style="font-size:0.8125rem;color:var(--text-3);margin-bottom:16px;">Basado en tu historial de compras de los últimos 6 meses.</p>
+                <div class="dash-bar-chart" role="img" aria-label="Proyección de gasto anual">
+                    <div class="dash-bar-wrap">
+                        <div class="dash-bar" style="--h:55%"  data-label="Nov" data-val="$2,100"></div>
+                        <div class="dash-bar" style="--h:72%"  data-label="Dic" data-val="$2,750"></div>
+                        <div class="dash-bar" style="--h:40%"  data-label="Ene" data-val="$1,520"></div>
+                        <div class="dash-bar" style="--h:88%"  data-label="Feb" data-val="$3,360"></div>
+                        <div class="dash-bar" style="--h:63%"  data-label="Mar" data-val="$2,400"></div>
+                        <div class="dash-bar dash-bar--current" style="--h:100%" data-label="Abr" data-val="$3,820"></div>
+                        <div class="dash-bar" style="--h:75%;opacity:.35;border:2px dashed var(--sams-blue);background:transparent;" data-label="May*" data-val="~$2,860"></div>
+                        <div class="dash-bar" style="--h:68%;opacity:.35;border:2px dashed var(--sams-blue);background:transparent;" data-label="Jun*" data-val="~$2,600"></div>
+                    </div>
+                </div>
+                <div class="dash-legend">
+                    <span class="dash-legend__dot" style="background:var(--sams-blue)"></span>
+                    <span>Gasto real</span>
+                    <span style="width:16px;height:2px;border-top:2px dashed var(--sams-blue);display:inline-block;vertical-align:middle;"></span>
+                    <span>Proyección estimada</span>
+                    <span style="margin-left:auto;font-weight:700;color:var(--text);">Total estimado 2026: <strong style="color:var(--sams-blue)">$28,400</strong></span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
         <div class="account-footer">
             <div class="footer-note">Tu perfil de Sam's Club te ayuda a navegar ofertas, administrar tu membresía y ver tu historial de compras.</div>
-            <a href="login.html" class="logout-btn">Cerrar sesión</a>
+            <a href="../login.html" class="logout-btn">Cerrar sesión</a>
         </div>
     </div>
 
@@ -297,7 +596,7 @@
                 </div>
                 <div class="footer-col">
                     <h3>Ayuda</h3>
-                    <a href="faq.html">Preguntas frecuentes</a><a href="#">Devoluciones</a>
+                    <a href="#">Preguntas frecuentes</a><a href="#">Devoluciones</a>
                     <a href="#">Rastrear pedido</a><a href="#">Contacto</a>
                 </div>
                 <div class="footer-col">
@@ -314,8 +613,8 @@
 
     <nav class="bottom-nav" aria-label="Navegación rápida">
         <a href="../index.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Inicio</span></a>
-        <a href="busqueda.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span>Buscar</span></a>
-        <a href="carrito.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span>Carrito</span></a>
+        <a href="../busqueda.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span>Buscar</span></a>
+        <a href="../carrito.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span>Carrito</span></a>
         <a href="account.html" class="bnav-item active"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>Cuenta</span></a>
     </nav>
 
@@ -352,12 +651,29 @@
     </button>
 
     <nav class="mobile-menu"><div class="mm-head"><strong>¡Hola, Socio!</strong><span>Inicia sesión para ver tus beneficios</span></div>
-        <div class="mm-section"><a href="login.html" class="mm-item">Iniciar Sesion</a><a href="#" class="mm-item">Registrarse</a></div>
-        <div class="mm-section"><a href="busqueda.html" class="mm-item">Electronica</a><a href="busqueda.html" class="mm-item">Hogar</a><a href="busqueda.html" class="mm-item">Alimentos</a><a href="busqueda.html" class="mm-item">Ropa</a><a href="busqueda.html" class="mm-item">Farmacia</a></div>
+        <div class="mm-section"><a href="../login.html" class="mm-item">Iniciar Sesión</a><a href="../registro.html" class="mm-item">Registrarse</a></div>
+        <div class="mm-section"><a href="../electronica.html" class="mm-item">Electrónica</a><a href="../hogar.html" class="mm-item">Hogar</a><a href="../alimentos.html" class="mm-item">Alimentos</a><a href="../moda.html" class="mm-item">Ropa</a><a href="../farmacia.html" class="mm-item">Farmacia</a></div>
         <div class="mm-section"><a href="#" class="mm-item" onclick="toggleTheme();toggleMenu();">Modo Oscuro</a><a href="#" class="mm-item" onclick="toggleA11y();toggleMenu();">Accesibilidad</a></div>
     </nav>
     <div class="overlay" onclick="closePanels()"></div>
 
     <script src="../js/main.js"></script>
+    <script>
+    /* ── Dashboard tabs ── */
+    function switchTab(btn, panelId) {
+        // Desactivar todos los tabs y paneles
+        btn.closest('.dash-tabs').querySelectorAll('.dash-tab').forEach(t => {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.dash-panel').forEach(p => p.classList.remove('active'));
+
+        // Activar el seleccionado
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        const panel = document.getElementById(panelId);
+        if (panel) panel.classList.add('active');
+    }
+    </script>
 </body>
 </html>

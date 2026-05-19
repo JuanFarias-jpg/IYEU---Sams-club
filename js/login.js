@@ -1,5 +1,4 @@
-/* SAM'S CLUB REDESIGN - LOGIN PAGE JS */
-/* Theme handled by main.js */
+/* sams.com.mx CLUB REDESIGN - LOGIN PAGE JS */
 
 /* === VALIDATION === */
 function validateEmail() {

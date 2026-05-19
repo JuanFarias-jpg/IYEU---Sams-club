@@ -1,5 +1,5 @@
-/* SAM'S CLUB REDESIGN - REGISTRO PAGE JS */
-/* Theme handled by main.js */
+/* sams.com.mx - REGISTRO PAGE JS */
+
 
 function validateName(){
   const input = document.getElementById('name');
