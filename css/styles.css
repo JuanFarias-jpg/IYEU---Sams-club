@@ -11,6 +11,7 @@ body {
   -webkit-font-smoothing: antialiased;
   transition: background var(--ease-slow), color var(--ease-slow);
   padding-bottom: var(--bottom-h);
+  overflow-x: hidden;
 }
 a { color: var(--sams-blue); text-decoration:none; }
 a:hover { text-decoration: underline; }
@@ -64,38 +65,104 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .header-inner {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 12px 16px;
+  gap: 12px;
+  padding: 10px 16px;
   max-width: var(--max-w);
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 /* Logo — SVG-style text  */
-.logo { display:flex; align-items:center; gap:6px; flex-shrink:0; color:#fff; text-decoration:none; }
+.logo { display:flex; align-items:center; gap:6px; flex-shrink:0; color:#fff; text-decoration:none; order:1; }
 .logo-text {
-  font-size: 1.35rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: #fff;
   letter-spacing: -0.02em;
   line-height: 1;
 }
-.logo-bracket { font-size:1.5rem; font-weight:300; color:#fff; }
+.logo-bracket { font-size:1.9rem; font-weight:300; color:#fff; }
+.logo:hover { transform: translateY(-1px); text-decoration:none; }
+.logo:hover .logo-text,
+.logo:hover .logo-bracket { color: var(--sams-yellow); }
 
 /* Nav links*/
-.header-nav { display:none; align-items:center; gap:4px; margin-left:8px; }
+.header-nav { display:none; align-items:center; gap:4px; margin-left:8px; order:2; }
 .header-nav__link {
   display:flex; align-items:center; gap:6px;
   color:rgba(255,255,255,0.9); font-size:0.8125rem; font-weight:500;
   padding:8px 12px; border-radius:var(--radius-sm);
-  transition: background var(--ease);
+  transition: background var(--ease), color var(--ease);
   text-decoration:none; white-space:nowrap;
 }
-.header-nav__link:hover { background:rgba(0,0,0,0.15); text-decoration:none; }
+.header-nav__link:hover { background:rgba(0,0,0,0.15); text-decoration:none; color: var(--sams-yellow); }
+.header-nav__link:hover svg { fill: var(--sams-yellow); }
 .header-nav__link svg { width:18px; height:18px; fill:currentColor; }
+.nav-dropdown { position:relative; }
+.nav-dropdown__caret { display:inline-block; margin-left:4px; font-size:0.8rem; transform: translateY(-1px); }
+.nav-dropdown__panel {
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  min-width:200px;
+  background: rgba(17,24,39,0.97);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+  padding: 8px 0;
+  margin-top: 8px;
+  z-index: 50;
+}
+.nav-dropdown__panel a {
+  display:block;
+  color: rgba(255,255,255,0.9);
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  text-decoration:none;
+  transition: background var(--ease), color var(--ease);
+}
+.nav-dropdown__panel a:hover { background: rgba(255,255,255,0.08); color: var(--sams-yellow); }
+.nav-dropdown:hover .nav-dropdown__panel,
+.nav-dropdown.nav-dropdown--open .nav-dropdown__panel { display:block; }
 
 /* Search bar  */
 .search-wrap {
   flex:1; position:relative; max-width:580px;
+  min-width:0;
+  order: 3;   /* desktop: despues de nav(2), antes de actions(4) */
+}
+@media (max-width:1023px) {
+  /* Mobile: header en una sola fila */
+  .header-inner {
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+
+  /* Ocultar texto del logo, solo mostrar <> */
+  .logo-text {
+    display: none;
+  }
+  .logo {
+    flex-shrink: 0;
+  }
+  .logo-bracket {
+    font-size: 1.6rem;
+  }
+
+  /* Search ocupa el espacio restante en la misma fila */
+  .search-wrap {
+    order: 3;
+    flex: 1;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Ocultar botones de accion del header */
+  .header-actions {
+    display: none !important;
+  }
 }
 .search-wrap input {
   width:100%; padding:10px 48px 10px 16px;
@@ -119,7 +186,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .search-btn svg { width:18px; height:18px; fill:#fff; }
 
 /* Header right actions */
-.header-actions { display:flex; align-items:center; gap:4px; margin-left:auto; }
+.header-actions { display:flex; align-items:center; gap:4px; margin-left:auto; order:4; }
 .h-action {
   display:flex; flex-direction:column; align-items:center; gap:1px;
   color:#fff; font-size:0.6875rem; padding:6px 10px;
@@ -128,7 +195,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   transition: background var(--ease);
   text-decoration:none; position:relative;
 }
-.h-action:hover { background:rgba(0,0,0,0.15); text-decoration:none; }
+.h-action:hover { background:rgba(0,0,0,0.15); text-decoration:none; color: var(--sams-yellow); }
+.h-action:hover svg { fill: var(--sams-yellow); }
 .h-action svg { width:22px; height:22px; fill:#fff; }
 .h-action__label { display:none; }
 .h-action__sub { font-size:0.6875rem; font-weight:600; }
@@ -279,6 +347,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   white-space: nowrap;
   transition: all var(--ease);
   cursor: pointer;
+  /* Touch target mínimo */
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 .pill:hover, .pill.active {
   border-color: var(--sams-blue);
@@ -314,6 +386,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   scroll-snap-align: start;
   flex: 0 0 170px;
   position: relative;
+  cursor: pointer;
 }
 .product-card:hover {
   border-color: var(--border);
@@ -341,6 +414,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   width:32px; height:32px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
   z-index:2; transition: transform var(--ease);
+  /* Expand touch target without changing visual size */
+  padding: 6px;
+  margin: -6px;
 }
 .product-card__wish svg {
   width:20px; height:20px; fill:none; stroke:var(--text-3); stroke-width:2;
@@ -369,6 +445,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-size:0.8125rem; color:var(--text); font-weight:400;
   display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
   overflow:hidden; margin-bottom:6px; line-height:1.4;
+  transition: color var(--ease);
+  cursor: pointer;
+}
+.product-card__name:hover {
+  color: var(--sams-blue);
 }
 .product-card__price {
   font-family:var(--mono); font-size:1.125rem; font-weight:700; color:var(--text);
@@ -387,7 +468,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   width:calc(100% - 24px); margin:0 12px 12px;
   padding:10px; background:var(--sams-blue); color:#fff;
   border-radius: var(--radius-sm); font-size:0.8125rem; font-weight:600;
-  min-height:40px;
+  min-height:44px;
   transition: background var(--ease), transform 100ms;
   position:relative; overflow:hidden;
 }
@@ -432,7 +513,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   padding:32px 0 24px;
 }
 .footer-grid { display:grid; grid-template-columns:1fr; gap:24px; }
-.footer-col h3 { font-size:0.875rem; font-weight:700; color:var(--text); margin-bottom:12px; }
+.footer-col h2, .footer-col h3 { font-size:0.875rem; font-weight:700; color:var(--text); margin-bottom:12px; }
 .footer-col a { display:block; color:var(--text-2); font-size:0.8125rem; padding:4px 0; }
 .footer-col a:hover { color:var(--sams-blue); }
 .footer-bottom {
@@ -486,8 +567,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
    ========================================== */
 .a11y-fab {
   position: fixed;
-  bottom: calc(var(--bottom-h) + 16px);
-  right: 16px;
+  bottom: 24px;
+  right: 24px;
   z-index: 300;
   width: 56px;
   height: 56px;
@@ -496,7 +577,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   color: #fff;
   border: none;
   cursor: pointer;
-  display: flex;
+  display: none; /* hidden by default (mobile-first) */
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 16px rgba(0,0,0,0.25);
@@ -512,12 +593,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 /* Hide FAB when panel is open */
 .a11y-panel.open ~ .a11y-fab,
-.a11y-fab.hidden { display: none; }
+.a11y-fab.hidden { display: none !important; }
 
+/* Show FAB only on desktop */
 @media (min-width:1024px) {
   .a11y-fab {
-    bottom: 24px;
-    right: 24px;
+    display: flex;
   }
 }
 
@@ -536,6 +617,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .a11y-close {
   width:32px; height:32px; border-radius:50%; background:var(--bg-gray);
   display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--text);
+  /* Expand touch area */
+  min-width: 44px;
+  min-height: 44px;
 }
 .a11y-group { margin-bottom:20px; }
 .a11y-label { font-size:0.75rem; font-weight:600; color:var(--text-3); text-transform:uppercase; letter-spacing:.04em; margin-bottom:8px; }
@@ -556,6 +640,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .toggle.on .toggle__track { background:var(--sams-blue); }
 .toggle.on .toggle__track::after { transform:translateX(20px); }
 
+/* ARIA switch state visual sync — complementa la clase .on */
+[role="switch"][aria-checked="true"] .toggle__track { background:var(--sams-blue); }
+[role="switch"][aria-checked="true"] .toggle__track::after { transform:translateX(20px); }
+
 .a11y-range { padding:8px 0; }
 .a11y-range input[type=range] {
   width:100%; -webkit-appearance:none; height:4px;
@@ -575,7 +663,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .overlay.on { opacity:1; pointer-events:auto; }
 
 /* ==========================================
-   ONBOARDING
+    ONBOARDING
    ========================================== */
 .onboard-overlay {
   position:fixed; inset:0; background:var(--overlay);
@@ -623,6 +711,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   display:flex; align-items:center; gap:12px;
   padding:12px 20px; color:var(--text); font-size:0.875rem;
   text-decoration:none; transition: background var(--ease);
+  min-height: 44px;
 }
 .mm-item:hover { background:var(--bg-gray); }
 
@@ -643,6 +732,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .menu-toggle { display:none; }
   .header-nav { display:flex; }
   .h-action__label { display:block; font-size:0.6875rem; }
+  /* Restaurar logo-text en desktop */
+  .logo-text { display:block; }
   .products-grid { grid-template-columns:repeat(4,1fr); gap:16px; }
   .products-scroll .product-card { flex:0 0 220px; }
   .footer-grid { grid-template-columns:repeat(4,1fr); }
@@ -675,7 +766,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .promo-carousel__arrow {
   position:absolute; top:50%; transform:translateY(-50%);
-  width:36px; height:36px; border-radius:50%;
+  width:44px; height:44px; border-radius:50%;
   background:rgba(0,0,0,0.3); color:#fff;
   display:flex; align-items:center; justify-content:center;
   z-index:2; cursor:pointer; border:none;
@@ -688,14 +779,25 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .promo-carousel__dots {
   position:absolute; bottom:10px; left:50%;
   transform:translateX(-50%);
-  display:flex; gap:6px; z-index:2;
+  display:flex; gap:4px; z-index:2;
 }
+/* Touch target mínimo WCAG 2.5.5 — el dot visible es pequeño pero el área táctil es 44px */
 .promo-carousel__dot {
-  width:8px; height:8px; border-radius:50%;
-  background:rgba(255,255,255,0.4); border:none; cursor:pointer;
+  width:44px; height:44px;
+  border-radius:50%;
+  background:none; border:none; cursor:pointer;
+  display:inline-flex; align-items:center; justify-content:center;
   transition: all var(--ease);
 }
-.promo-carousel__dot.active {
+.promo-carousel__dot::after {
+  content:'';
+  display:block;
+  width:8px; height:8px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.4);
+  transition: all var(--ease);
+}
+.promo-carousel__dot.active::after {
   background:#fff; width:22px; border-radius:4px;
 }
 
@@ -785,5 +887,302 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .banner-grid-matched > .banner-sm {
     height:100%;
     display:flex; flex-direction:column; justify-content:center;
+  }
+}
+
+/* =============================================
+   BÚSQUEDA — LAYOUT CON SIDEBAR DE FILTROS
+   ============================================= */
+
+/* Contenedor principal: sidebar izquierdo + grid derecho */
+.search-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* Área del grid */
+.products-area {
+  flex: 1;
+  min-width: 0;
+}
+
+/* =============================================
+   SIDEBAR DE FILTROS
+   ============================================= */
+.filters-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  position: sticky;
+  top: 80px;
+}
+
+.filters-sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.filters-sidebar__title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+/* El botón X solo se muestra en móvil */
+.filters-sidebar__close {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-2);
+  padding: 4px;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Grupos de filtro ── */
+.filter-group {
+  border-top: 1px solid var(--border);
+  padding: 12px 0;
+}
+
+.filter-group__toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0;
+  min-height: 44px;
+}
+
+.filter-group__caret {
+  transition: transform 0.25s ease;
+}
+
+.filter-group__caret.rotated {
+  transform: rotate(-90deg);
+}
+
+.filter-group__body {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+  max-height: 500px;
+  transition: max-height 0.25s ease;
+}
+
+/* Checkboxes de filtro */
+.filter-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: var(--text-2);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.filter-check input[type="checkbox"] {
+  accent-color: var(--sams-blue);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+/* Botón limpiar filtros */
+.filter-reset-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 8px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  color: var(--sams-blue);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+  min-height: 44px;
+}
+
+.filter-reset-btn:hover {
+  background: var(--bg-gray);
+}
+
+/* =============================================
+   DUAL RANGE SLIDER — PRECIO
+   ============================================= */
+.price-range-wrap {
+  padding: 4px 0;
+}
+
+.price-range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+/* Track contenedor */
+.price-slider-track {
+  position: relative;
+  height: 4px;
+  background: var(--border);
+  border-radius: 4px;
+  margin: 8px 0 20px;
+}
+
+/* Barra azul entre los dos pulgares */
+.price-slider-fill {
+  position: absolute;
+  height: 100%;
+  background: var(--sams-blue);
+  border-radius: 4px;
+  pointer-events: none;
+  transition: left 0.05s, width 0.05s;
+}
+
+/* Los dos inputs range superpuestos */
+.price-range-input {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 4px;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: none;
+}
+
+/* El thumb (pulgar) */
+.price-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--sams-blue);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.25);
+  cursor: pointer;
+  pointer-events: all;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.price-range-input::-webkit-slider-thumb:hover,
+.price-range-input::-webkit-slider-thumb:active {
+  transform: scale(1.2);
+  box-shadow: 0 2px 8px rgba(0,103,160,.4);
+}
+
+.price-range-input::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--sams-blue);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.25);
+  cursor: pointer;
+  pointer-events: all;
+}
+
+/* Botón Aplicar */
+.price-apply-btn {
+  width: 100%;
+  padding: 8px;
+  background: var(--sams-blue);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.2s, transform 0.1s;
+  min-height: 44px;
+}
+
+.price-apply-btn:hover   { background: var(--sams-dark); }
+.price-apply-btn:active  { transform: scale(0.98); }
+
+/* Transición en las cards al filtrar */
+.product-card {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* =============================================
+   BOTÓN "FILTROS" VISIBLE SOLO EN MÓVIL
+   ============================================= */
+.filter-toggle-mobile {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+/* =============================================
+   RESPONSIVE — MÓVIL
+   ============================================= */
+@media (max-width: 768px) {
+  .filter-toggle-mobile {
+    display: flex;
+  }
+
+  .search-layout {
+    flex-direction: column;
+  }
+
+  /* El sidebar se convierte en panel deslizable desde la izquierda */
+  .filters-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 280px;
+    z-index: 1100;
+    border-radius: 0;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    box-shadow: 4px 0 24px rgba(0,0,0,.15);
+  }
+
+  .filters-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .filters-sidebar__close {
+    display: flex;
+  }
+
+  .products-area {
+    width: 100%;
   }
 }

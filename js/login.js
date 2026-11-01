@@ -1,18 +1,4 @@
-/* SAM'S CLUB REDESIGN — LOGIN PAGE JS */
-
-// Theme init
-(function(){
-  const s = localStorage.getItem('sams-theme');
-  if (s) document.documentElement.setAttribute('data-theme', s);
-  else if (matchMedia('(prefers-color-scheme:dark)').matches) document.documentElement.setAttribute('data-theme', 'dark');
-})();
-
-function toggleTheme() {
-  const c = document.documentElement.getAttribute('data-theme');
-  const n = c === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', n);
-  localStorage.setItem('sams-theme', n);
-}
+/* sams.com.mx CLUB REDESIGN - LOGIN PAGE JS */
 
 /* === VALIDATION === */
 function validateEmail() {
@@ -101,7 +87,7 @@ function handleLogin() {
     document.getElementById('wm-modal').classList.add('show');
 
     setTimeout(() => {
-      window.location.href = '../index.html';
+      window.location.href = 'account.html';
     }, 2200);
   }, 1500);
 }

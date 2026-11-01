@@ -1,26 +1,37 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light" data-font-scale="100" data-spacing="normal">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inicia sesión en Sam's Club Mexico para acceder a tu cuenta, ver pedidos y disfrutar tus beneficios de socio.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:title" content="Iniciar sesión | Sam's Club">
+  <meta property="og:description" content="Inicia sesión en Sam's Club Mexico para acceder a tu cuenta y disfrutar tus beneficios de socio.">
+  <meta property="og:type" content="website">
   <title>Iniciar sesión | Sam's Club</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/styles.css">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:var(--font);color:var(--text);background:var(--bg);display:flex;flex-direction:column;min-height:100vh;transition:background var(--ease-slow),color var(--ease-slow);}
+    body{font-family:var(--font);color:var(--text);background:var(--bg);display:flex;flex-direction:column;min-height:100vh;transition:background var(--ease-slow),color var(--ease-slow);animation:pageFadeIn .24s ease forwards;}
     a{color:var(--sams-blue);text-decoration:none;}
     a:hover{text-decoration:underline;}
+
+    @keyframes pageFadeIn{from{opacity:0;}to{opacity:1;}}
 
     /* Layout: logo centered top, form middle, footer bottom */
     .login-wrap{flex:1;display:flex;flex-direction:column;align-items:center;padding:48px 20px 32px;}
     
     /* Logo matching real login: sam's club <> in blue */
-    .login-logo{margin-bottom:32px;text-align:center;}
-    .login-logo-text{font-size:1.75rem;font-weight:700;color:var(--sams-blue);letter-spacing:-0.02em;}
-    .login-logo-bracket{font-size:2rem;font-weight:300;color:var(--sams-blue);}
+    .login-logo{margin-bottom:32px;text-align:center;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none;}
+    .login-logo-text{font-size:1.75rem;font-weight:700;color:var(--sams-blue);letter-spacing:-0.02em;transition:color var(--ease), transform var(--ease);}
+    .login-logo-bracket{font-size:2rem;font-weight:300;color:var(--sams-blue);transition:color var(--ease);}
+    .login-logo:hover .login-logo-text,
+    .login-logo:hover .login-logo-bracket{color:var(--sams-yellow);}
+    .login-logo:hover{transform:translateY(-1px);text-decoration:none;}
 
     .login-title{font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:8px;text-align:center;}
     .login-subtitle{font-size:0.875rem;color:var(--text-2);margin-bottom:32px;text-align:center;}
@@ -118,6 +129,7 @@
   </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Saltar al contenido principal</a>
   <div style="position:relative;">
     <button class="theme-corner" onclick="toggleTheme()" aria-label="Cambiar tema">
       <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
@@ -126,10 +138,10 @@
 
   <main class="login-wrap">
     <!-- Logo  -->
-    <div class="login-logo">
+    <a href="../index.html" class="login-logo" aria-label="Ir a inicio">
       <span class="login-logo-text">sam's club </span>
       <span class="login-logo-bracket">&lt;&gt;</span>
-    </div>
+    </a>
 
     <h1 class="login-title">Inicia sesión o crea una cuenta</h1>
     <p class="login-subtitle">para disfrutar de todos los beneficios</p>
@@ -140,7 +152,7 @@
         <div class="form-group">
           <label class="form-label" for="email">Correo electrónico</label>
           <input class="form-input" type="email" id="email" placeholder="" autocomplete="email" aria-describedby="email-err" oninput="validateEmail()">
-          <div class="form-error" id="email-err">⚠ Ingresa un correo electrónico válido</div>
+          <div class="form-error" id="email-err">Ingresa un correo electrónico válido</div>
         </div>
         <button class="login-btn" id="btn-continue" onclick="continueToPassword()">Continuar</button>
       </div>
@@ -165,17 +177,50 @@
         <button class="social-btn">Google</button>
         <button class="social-btn">Apple</button>
       </div>
+      <div style="margin-top:18px;text-align:center;font-size:0.95rem;color:var(--text-2);">
+        ¿No tienes cuenta? <a href="registro.html" style="color:var(--sams-blue);text-decoration:underline;font-weight:600;">Regístrate</a>
+      </div>
     </div>
   </main>
 
-  <!-- Footer (matching real) -->
-  <footer class="login-footer">
-    <span>© 2026 Sam's Club (pagina no oficial). Todos los derechos reservados.</span>
-    <div style="display:flex;gap:16px;">
-      <a href="#">Términos y condiciones</a>
-      <a href="#">Aviso de privacidad</a>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h2>Sam's Club</h2>
+          <a href="#">Sobre nosotros</a><a href="#">Trabaja con nosotros</a>
+          <a href="#">Responsabilidad social</a><a href="#">Aviso de privacidad</a>
+        </div>
+        <div class="footer-col">
+          <h2>Compras</h2>
+          <a href="#">Membresías</a><a href="#">Ofertas</a>
+          <a href="#">Catálogo digital</a><a href="#">Tarjeta de regalo</a>
+        </div>
+        <div class="footer-col">
+          <h2>Ayuda</h2>
+          <a href="faq.html">Preguntas frecuentes</a><a href="#">Devoluciones</a>
+          <a href="#">Rastrear pedido</a><a href="#">Contacto</a>
+        </div>
+        <div class="footer-col">
+          <h2>Síguenos</h2>
+          <a href="#">Facebook</a><a href="#">Instagram</a>
+          <a href="#">X (Twitter)</a><a href="#">YouTube</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        Sam's Club Mexico (pagina no oficial) | FCFM UANL | Juan Farias & Marco Sánchez 
+      </div>
     </div>
   </footer>
+
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav" aria-label="Navegación rápida">
+    <a href="../index.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Inicio</span></a>
+    <a href="listas.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg><span>Favoritos</span></a>
+    <a href="carrito.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span>Carrito</span></a>
+    <a href="login.html" class="bnav-item active"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>Cuenta</span></a>
+  </nav>
 
   <!-- Welcome modal -->
   <div class="login-overlay" id="wm-overlay"></div>
@@ -184,6 +229,36 @@
     <div class="wm-text">Redirigiendo a tu cuenta...</div>
   </div>
 
+  <div class="overlay" onclick="closePanels()"></div>
+  <aside class="a11y-panel" role="dialog" aria-label="Accesibilidad">
+    <div class="a11y-head"><h2>Accesibilidad</h2><button class="a11y-close" onclick="toggleA11y()">X</button></div>
+    <div class="a11y-group"><div class="a11y-label">Apariencia</div>
+      <div class="toggle" data-tog="theme" onclick="toggleTheme()" role="switch" tabindex="0"><span class="toggle__text">Modo oscuro</span><div class="toggle__track"></div></div>
+    </div>
+    <div class="a11y-group"><div class="a11y-label">Tamaño de texto</div>
+      <div class="a11y-range"><input type="range" id="font-range" min="90" max="150" step="10" value="100" oninput="updateFont(this.value)" aria-label="Tamaño de texto">
+      <div class="a11y-range__vals"><span>90%</span><span id="font-val">100%</span><span>150%</span></div></div>
+    </div>
+    <div class="a11y-group"><div class="a11y-label">Contraste</div>
+      <div class="toggle" data-tog="contrast" onclick="toggleContrast()" role="switch" tabindex="0"><span class="toggle__text">Alto contraste</span><div class="toggle__track"></div></div>
+    </div>
+    <div class="a11y-group"><div class="a11y-label">Color</div>
+      <div class="toggle" data-tog="gray" onclick="toggleGray()" role="switch" tabindex="0"><span class="toggle__text">Blanco y negro</span><div class="toggle__track"></div></div>
+    </div>
+    <div class="a11y-group"><div class="a11y-label">Espaciado</div>
+      <div style="display:flex;gap:6px;">
+        <button onclick="setSpacing('normal')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Normal</button>
+        <button onclick="setSpacing('wide')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Amplio</button>
+        <button onclick="setSpacing('wider')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Muy amplio</button>
+      </div>
+    </div>
+    <button onclick="resetA11y()" style="width:100%;padding:10px;background:var(--bg-gray);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:0.8125rem;font-weight:600;margin-top:16px;cursor:pointer;">Restablecer todo</button>
+  </aside>
+  <button class="a11y-fab" onclick="toggleA11y()" aria-label="Abrir configuración de accesibilidad">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
+  </button>
+
+  <script src="../js/main.js"></script>
   <script src="../js/login.js"></script>
 </body>
 </html>

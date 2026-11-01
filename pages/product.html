@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-font-scale="100" data-spacing="normal">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Samsung Smart TV 55 pulgadas QLED 4K disponible en Sam's Club Mexico. Envio gratis y meses sin intereses con tarjetas participantes.">
+    <title>Samsung Smart TV 55'' | Sam's Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .product-hero { display:grid; gap:24px; padding:24px 0; animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .product-media { background:var(--bg-card); border:1px solid var(--border-light); border-radius:var(--radius); overflow:hidden; display:flex; align-items:center; justify-content:center; min-height:360px; position:relative; }
+        .product-media img {
+            width:100%;
+            max-width:620px;
+            height:auto;
+            object-fit:contain;
+            transition: transform 0.35s ease, transform-origin 0.35s ease;
+            cursor:zoom-in;
+            transform-origin: center center;
+        }
+        .product-media:hover img {
+            transform: scale(2);
+        }
+        .product-meta { display:grid; gap:16px; }
+        .product-badge { display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; background:var(--sams-green); color:#fff; font-size:0.8125rem; font-weight:700; width:fit-content; }
+        .product-title { font-size:2rem; font-weight:800; line-height:1.05; }
+        .product-subtitle { font-size:0.95rem; color:var(--text-2); }
+        .product-rating { display:flex; align-items:center; gap:8px; font-size:0.875rem; color:var(--text-2); }
+        .product-rating svg { width:16px; height:16px; fill:var(--sams-yellow); }
+        .product-departments { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+        .dept-label { padding:4px 8px; background:var(--secondary-bg); border:1px solid var(--border-light); border-radius:var(--radius-sm); font-size:0.8rem; color:var(--text-2); cursor:default; transition:background 0.2s ease, color 0.2s ease; }
+        .dept-label:hover { background:var(--sams-blue); color:white; border-color:var(--sams-blue); }
+        .product-price { display:flex; align-items:flex-end; gap:10px; flex-wrap:wrap; }
+        .product-price strong { font-family:var(--mono); font-size:2.5rem; font-weight:900; color:var(--text); }
+        .product-price small { font-size:1rem; color:var(--text-2); }
+        .product-price-old { font-size:0.95rem; color:var(--text-3); text-decoration:line-through; }
+        .price-note { font-size:0.9rem; color:var(--text-3); }
+        .product-actions { display:flex; flex-wrap:wrap; gap:12px; }
+        .product-actions .add-btn, .product-actions .btn-white { min-width:180px; text-decoration:none; }
+        .product-info-panel { display:grid; gap:18px; background:var(--bg-card); border:1px solid var(--border-light); border-radius:var(--radius); padding:24px; animation: fadeIn 0.8s ease-out 0.2s both; }
+        .product-section { display:grid; gap:18px; padding:24px 0; animation: fadeIn 0.8s ease-out 0.4s both; }
+        .product-section h2 { font-size:1.15rem; font-weight:700; }
+        .product-specs { display:grid; gap:12px; }
+        .product-specs li { display:flex; justify-content:space-between; gap:12px; padding:12px 16px; background:var(--secondary-bg); border:1px solid transparent; border-radius:var(--radius-sm); font-size:0.95rem; color:var(--text); transition:background var(--ease), transform var(--ease), border-color var(--ease); cursor:default; }
+        .product-specs li:hover { background: rgba(0,103,160,0.08); border-color:var(--sams-blue); transform: translateY(-1px); }
+        .product-specs li span:first-child { color:var(--text-2); }
+        .related-products { display:grid; gap:16px; }
+        .product-card { min-height:320px; }
+        .product-card__img { min-height:180px; }
+        @media (min-width:720px) {
+            .product-hero { grid-template-columns:1.1fr 0.9fr; align-items:start; }
+            .product-info-panel { padding:28px; }
+            .product-specs { grid-template-columns:repeat(2,minmax(0,1fr)); }
+            .related-products { grid-template-columns:repeat(3,minmax(0,1fr)); }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip-link">Saltar al contenido principal</a>
+    <div class="announce-bar">
+    ¡Aprovecha! Hasta 30% en Vinos y Licores Del 13 al 19 de marzo 2026
+    <a href="#">Ver más ></a>
+    </div>
+    <header class="header">
+    <div class="header-inner">
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+        </button>
+        <a href="../index.html" class="logo" aria-label="Sam's Club inicio">
+        <span class="logo-text">sam's club</span>
+        <span class="logo-bracket">&lt;&gt;</span>
+        </a>
+        <nav class="header-nav">
+        <div class="nav-dropdown">
+            <a href="#" class="header-nav__link header-nav__link--dropdown">
+            <svg viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+            Departamentos
+            <svg class="nav-dropdown__caret" viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+            </a>
+            <div class="nav-dropdown__panel">
+                <a href="electronica.html">Electrónica</a>
+                <a href="hogar.html">Hogar</a>
+                <a href="alimentos.html">Alimentos</a>
+                <a href="farmacia.html">Farmacia</a>
+                <a href="tecnologia.html">Tecnología</a>
+                <a href="moda.html">Moda</a>
+            </div>
+        </div>
+        <a href="beneficios.html" class="header-nav__link">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        Beneficios
+        </a>
+        </nav>
+        <div class="search-wrap" role="search">
+        <input type="search" placeholder="Buscar en Sam's Club en línea o en tienda" aria-label="Buscar productos">
+        <button class="search-btn" aria-label="Buscar">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </button>
+        </div>
+        <div class="header-actions">
+        <a href="login.html" class="h-action h-action--mobile-hide" aria-label="Cuenta">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            <span class="h-action__label">Iniciar sesión</span>
+            <span class="h-action__sub">Cuenta</span>
+        </a>
+        <a href="carrito.html" class="h-action h-action--mobile-hide" aria-label="Carrito" style="position:relative">
+            <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            <span class="cart-badge">0</span>
+        </a>
+        <button class="h-action h-action--mobile-hide" onclick="toggleTheme()" aria-label="Cambiar tema">
+            <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+        </button>
+        </div>
+    </div>
+    </header>
+    <div class="secondary-bar">
+        <div class="secondary-inner">
+            <div class="sec-left">
+            <a href="#">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Monterrey, 64349
+            </a>
+            <span>Sam's Club Cumbres, Mty</span>
+            </div>
+            <div class="sec-links">
+            <a href="#">Cuponera</a>
+            <a href="#">Hazte Socio</a>
+            <a href="faq.html">Ayuda</a>
+            <a href="#">Socio de Negocio</a>
+            <a href="#">Member's Mark</a>
+            <a href="#">Facturar</a>
+            <a href="#">Encuentra tu Club</a>
+            </div>
+        </div>
+    </div>
+<main id="main">
+    <div class="container">
+        <div class="product-hero">
+            <div class="product-media">
+                <img src="/Images/tv.png" alt="Samsung Smart TV 55 pulgadas QLED 4K">
+            </div>
+        <div class="product-meta">
+            <span class="product-badge">Especial en línea</span>
+        <div>
+            <h1 class="product-title">Samsung Smart TV 55'' QLED 4K</h1>
+            <p class="product-subtitle">Pantalla inteligente con HDR, Bixby y sonido envolvente para tu sala.</p>
+        </div>
+        <div class="product-departments">
+            <span class="dept-label" title="Electrónica">Electrónica</span>
+            <span class="dept-label" title="Tecnología">Tecnología</span>
+        </div>
+        <div class="product-rating">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            4.8 - 1,250 reseñas
+        </div>
+        <div class="product-price">
+            <strong>$19,999</strong>
+            <span class="product-price-old">$24,499</span>
+        </div>
+        <p class="price-note">12 MSI con tarjeta participante - Envío gratis en compras superiores a $2,000</p>
+        <div class="product-actions">
+            <button class="add-btn">Agregar al carrito</button>
+            <a href="carrito.html" class="add-btn">Comprar ahora</a>
+        </div>
+        <div class="product-info-panel">
+            <div>
+                <h2>Entrega y garantía</h2>
+                <p style="color:var(--text-2);font-size:0.95rem;">Entrega a domicilio en 2-4 días hábiles. Instalación opcional disponible en Club selectos.</p>
+            </div>
+            <div>
+                <h2>Sku</h2>
+                <p style="color:var(--text-2);font-size:0.95rem;">TV-Q55-2026</p>
+            </div>
+        </div>
+    </div>
+</div>
+    <section class="product-section">
+        <div>
+            <h2>Descripción</h2>
+            <p style="color:var(--text-2);line-height:1.75;">Disfruta de colores más vivos y una experiencia de cine en casa con el panel QLED 4K. Incluye Smart Hub, control remoto con voz y compatibilidad con las principales apps de streaming.</p>
+        </div>
+        <div>
+            <h2>Especificaciones</h2>
+            <ul class="product-specs">
+                <li><span>Pantalla</span><strong>55 pulgadas</strong></li>
+                <li><span>Resolución</span><strong>4K UHD</strong></li>
+                <li><span>Tecnología</span><strong>QLED</strong></li>
+                <li><span>Conectividad</span><strong>Wi-Fi, HDMI 2.1, Bluetooth</strong></li>
+                <li><span>Audio</span><strong>Dolby Digital</strong></li>
+                <li><span>Garantía</span><strong>2 años</strong></li>
+            </ul>
+        </div>
+    </section>
+    <section class="product-section">
+        <div class="section-heading">
+            <h2>Productos relacionados</h2>
+            <a href="busqueda.html" class="section-link">Ver más</a>
+        </div>
+        <div class="related-products products-grid">
+            <article class="product-card">
+                <div class="product-card__top">
+                    <span class="promo-tag">Promoción</span>
+                    <a href="busqueda.html" class="promo-link">Ver más</a>
+                </div>
+                <button class="product-card__wish" aria-label="Agregar a favoritos">
+                    <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg>
+                </button>
+                <div class="product-card__img">
+                    <img src="/Images/HisenseSTV.png" alt="Hisense Smart TV 50 pulgadas" style="width:100%;height:100%;object-fit:contain;border-radius:8px;display:block;">
+                </div>
+                <div class="product-card__info">
+                    <p class="product-card__name">LG Smart TV 65" OLED evo 4K 2025 con ThinQ AI webOS</p>
+                    <div class="product-card__price">$27,999 <span class="product-card__price-old">$39,999</span></div>
+                    <div class="product-card__shipping">Envío sin costo</div>
+                </div>
+                <button class="add-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    Agregar
+                </button>
+            </article>
+
+            <article class="product-card">
+                <div class="product-card__top">
+                    <span class="promo-tag">Promoción</span>
+                    <a href="busqueda.html" class="promo-link">Ver más</a>
+                </div>
+                <button class="product-card__wish" aria-label="Agregar a favoritos">
+                    <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg>
+                </button>
+                <div class="product-card__img">
+                    <img src="/Images/NS2.png" alt="Nintendo Switch 2 256GB Bundle Internacional" style="width:100%;height:100%;object-fit:contain;border-radius:8px;display:block;">
+                </div>
+                <div class="product-card__info">
+                    <p class="product-card__name">Nintendo Switch 2 256GB Bundle Internacional Juego Físico Super Mario Galaxy</p>
+                    <div class="product-card__price">$9,349 <span class="product-card__price-old">$11,999</span></div>
+                    <div class="product-card__shipping">Envío sin costo</div>
+                </div>
+                <button class="add-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    Agregar
+                </button>
+            </article>
+
+            <article class="product-card">
+                <div class="product-card__top">
+                    <span class="promo-tag">Promoción</span>
+                    <a href="busqueda.html" class="promo-link">Ver más</a>
+                </div>
+                <button class="product-card__wish" aria-label="Agregar a favoritos">
+                    <svg viewBox="0 0 24 24"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg>
+                </button>
+                <div class="product-card__img">
+                    <img src="/Images/SBarra de Sonido.png" alt="Samsung Barra de Sonido HW-Q990D 11.1.4 con Dolby Atmos" style="width:100%;height:100%;object-fit:contain;border-radius:8px;display:block;">
+                </div>
+                <div class="product-card__info">
+                    <p class="product-card__name">Samsung Barra de Sonido HW-Q990D 11.1.4 con Dolby Atmos</p>
+                    <div class="product-card__price">$16,499 <span class="product-card__price-old">$22,999</span></div>
+                    <div class="product-card__shipping">Envío sin costo</div>
+                </div>
+                <button class="add-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    Agregar
+                </button>
+            </article>
+        </div>
+    </section>
+    </div>
+</main>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Sam's Club</h3>
+                <a href="#">Sobre nosotros</a><a href="#">Trabaja con nosotros</a>
+                <a href="#">Responsabilidad social</a><a href="#">Aviso de privacidad</a>
+            </div>
+            <div class="footer-col">
+                <h3>Compras</h3>
+                <a href="#">Membresías</a><a href="#">Ofertas</a>
+                <a href="#">Catálogo digital</a><a href="#">Tarjeta de regalo</a>
+            </div>
+            <div class="footer-col">
+                <h3>Ayuda</h3>
+                <a href="faq.html">Preguntas frecuentes</a><a href="#">Devoluciones</a>
+                <a href="#">Rastrear pedido</a><a href="#">Contacto</a>
+            </div>
+            <div class="footer-col">
+                <h3>Síguenos</h3>
+                <a href="#">Facebook</a><a href="#">Instagram</a>
+                <a href="#">X (Twitter)</a><a href="#">YouTube</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Sam's Club Mexico (pagina no oficial) | FCFM UANL | Juan Farias & Marco Sánchez
+        </div>
+    </div>
+</footer>
+<nav class="bottom-nav" aria-label="Navegación rápida">
+    <a href="../index.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Inicio</span></a>
+    <a href="busqueda.html" class="bnav-item active"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span>Buscar</span></a>
+    <a href="carrito.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span>Carrito</span></a>
+    <a href="login.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>Cuenta</span></a>
+</nav>
+<nav class="mobile-menu"><div class="mm-head"><strong>¡Hola, Socio!</strong><span>Inicia sesión para ver tus beneficios</span></div>
+    <div class="mm-section"><a href="login.html" class="mm-item">Iniciar Sesion</a><a href="#" class="mm-item">Registrarse</a></div>
+    <div class="mm-section"><a href="busqueda.html" class="mm-item">Electronica</a><a href="busqueda.html" class="mm-item">Hogar</a><a href="busqueda.html" class="mm-item">Alimentos</a><a href="busqueda.html" class="mm-item">Ropa</a><a href="busqueda.html" class="mm-item">Farmacia</a></div>
+    <div class="mm-section"><a href="#" class="mm-item" onclick="toggleTheme();toggleMenu();">Modo Oscuro</a><a href="#" class="mm-item" onclick="toggleA11y();toggleMenu();">Accesibilidad</a></div>
+</nav>
+<!-- ===== ACCESSIBILITY PANEL ===== -->
+<aside class="a11y-panel" role="dialog" aria-label="Accesibilidad">
+  <div class="a11y-head"><h2>Accesibilidad</h2><button class="a11y-close" onclick="toggleA11y()">X</button></div>
+  <div class="a11y-group"><div class="a11y-label">Apariencia</div>
+    <div class="toggle" data-tog="theme" onclick="toggleTheme()" role="switch" tabindex="0"><span class="toggle__text">Modo oscuro</span><div class="toggle__track"></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Tamaño de texto</div>
+    <div class="a11y-range"><input type="range" id="font-range" min="90" max="150" step="10" value="100" oninput="updateFont(this.value)" aria-label="Tamaño de texto">
+    <div class="a11y-range__vals"><span>90%</span><span id="font-val">100%</span><span>150%</span></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Contraste</div>
+    <div class="toggle" data-tog="contrast" onclick="toggleContrast()" role="switch" tabindex="0"><span class="toggle__text">Alto contraste</span><div class="toggle__track"></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Color</div>
+    <div class="toggle" data-tog="gray" onclick="toggleGray()" role="switch" tabindex="0"><span class="toggle__text">Blanco y negro</span><div class="toggle__track"></div></div>
+  </div>
+  <div class="a11y-group"><div class="a11y-label">Espaciado</div>
+    <div style="display:flex;gap:6px;">
+      <button onclick="setSpacing('normal')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Normal</button>
+      <button onclick="setSpacing('wide')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Amplio</button>
+      <button onclick="setSpacing('wider')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Muy amplio</button>
+    </div>
+  </div>
+  <button onclick="resetA11y()" style="width:100%;padding:10px;background:var(--bg-gray);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:0.8125rem;font-weight:600;margin-top:16px;cursor:pointer;">Restablecer todo</button>
+</aside>
+
+<button class="a11y-fab" onclick="toggleA11y()" aria-label="Abrir configuración de accesibilidad">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
+</button>
+
+<div class="overlay" onclick="closePanels()"></div>
+<script src="../js/main.js"></script>
+<script>
+    const productMedia = document.querySelector('.product-media');
+    const productImage = productMedia?.querySelector('img');
+
+    if (productMedia && productImage) {
+        productMedia.addEventListener('mousemove', (event) => {
+            const rect = productMedia.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 100;
+            const y = ((event.clientY - rect.top) / rect.height) * 100;
+            productImage.style.transformOrigin = `${x}% ${y}%`;
+            productImage.style.transform = 'scale(2)';
+        });
+
+        productMedia.addEventListener('mouseleave', () => {
+            productImage.style.transform = 'scale(1)';
+            productImage.style.transformOrigin = 'center center';
+        });
+    }
+</script>
+</body>
+</html>

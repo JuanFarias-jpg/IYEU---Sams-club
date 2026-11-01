@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-font-scale="100" data-spacing="normal">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Revisa los articulos en tu carrito de Sam's Club, confirma cantidades y procede al pago de forma segura.">
+    <title>Carrito | Sam's Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{font-family:var(--font);font-size:16px;}
+        body{min-height:100vh;background:var(--bg);color:var(--text);line-height:1.5;transition:background var(--ease-slow),color var(--ease-slow);animation:pageFadeIn .24s ease forwards;padding-bottom:var(--bottom-h);}
+        @keyframes pageFadeIn{from{opacity:0;}to{opacity:1;}}
+        .cart-page { padding: 24px 0; }
+        .cart-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+        .cart-title { font-size: 2rem; font-weight: 800; margin: 0; }
+        .cart-subtitle { color: var(--text-2); margin: 8px 0 0; max-width: 520px; }
+        .cart-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+        .cart-items { display: grid; gap: 16px; }
+        .cart-item { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 18px; align-items: center; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 18px; }
+        .cart-item__image { width: 140px; min-height: 110px; border-radius: 18px; overflow: hidden; background: var(--secondary-bg); display: flex; align-items: center; justify-content: center; }
+        .cart-item__image img { width: 100%; height: 100%; object-fit: contain; }
+        .cart-item__details { display: grid; gap: 10px; }
+        .cart-item__name { font-size: 1rem; font-weight: 700; margin: 0; }
+        .cart-item__meta { color: var(--text-2); font-size: 0.95rem; display: flex; flex-wrap: wrap; gap: 12px; }
+        .cart-item__qty { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .cart-item__qty button { width: 36px; height: 36px; border-radius: 999px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 1rem; }
+        .cart-item__qty span { min-width: 28px; text-align: center; font-weight: 700; }
+        .cart-item__price { font-size: 1.1rem; font-weight: 800; color: var(--text); }
+        .cart-summary { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 24px; }
+        .cart-summary h2 { font-size: 1.15rem; font-weight: 700; margin: 0 0 18px; }
+        .cart-summary__line { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; color: var(--text-2); }
+        .cart-summary__total { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 1rem; font-weight: 700; color: var(--text); margin-top: 8px; }
+        .cart-summary__btn { display: inline-flex; width: 100%; align-items: center; justify-content: center; padding: 14px 18px; background: var(--sams-blue); color: #fff; border-radius: var(--radius-full); border: none; font-size: 1rem; font-weight: 700; text-decoration: none; margin-top: 20px; transition: background var(--ease); }
+        .cart-summary__btn:hover { background: var(--sams-hover); }
+        .cart-note { margin-top: 14px; color: var(--text-3); font-size: 0.95rem; }
+        .cart-empty { text-align: center; color: var(--text-2); padding: 40px 0; }
+        .cart-summary__discount { color: var(--sams-green); font-weight: 700; }
+        @media (min-width: 720px) {
+            .cart-page { padding: 32px 0; }
+            .cart-grid { display: grid; grid-template-columns: 1.5fr 0.9fr; gap: 24px; }
+            .cart-item { grid-template-columns: 180px minmax(0, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip-link">Saltar al contenido principal</a>
+    <div class="announce-bar">¡Aprovecha! Hasta 30% en Vinos y Licores Del 13 al 19 de marzo 2026 <a href="#">Ver más ></a></div>
+    <header class="header">
+        <div class="header-inner">
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú">
+                <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
+            <a href="../index.html" class="logo" aria-label="Sam's Club inicio">
+                <span class="logo-text">sam's club</span>
+                <span class="logo-bracket">&lt;&gt;</span>
+            </a>
+            <nav class="header-nav">
+                <div class="nav-dropdown">
+                    <a href="#" class="header-nav__link header-nav__link--dropdown">
+                        <svg viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+                        Departamentos
+                        <svg class="nav-dropdown__caret" viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+                    </a>
+                    <div class="nav-dropdown__panel">
+                        <a href="electronica.html">Electrónica</a>
+                        <a href="hogar.html">Hogar</a>
+                        <a href="alimentos.html">Alimentos</a>
+                        <a href="farmacia.html">Farmacia</a>
+                        <a href="tecnologia.html">Tecnología</a>
+                        <a href="moda.html">Moda</a>
+                    </div>
+                </div>
+                <a href="#" class="header-nav__link">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    Beneficios
+                </a>
+            </nav>
+            <div class="search-wrap" role="search">
+                <input type="search" placeholder="Buscar en Sam's Club en línea o en tienda" aria-label="Buscar productos">
+                <button class="search-btn" aria-label="Buscar">
+                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </button>
+            </div>
+            <div class="header-actions">
+                <a href="login.html" class="h-action h-action--mobile-hide" aria-label="Cuenta">
+                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <span class="h-action__label">Iniciar sesión</span>
+                    <span class="h-action__sub">Cuenta</span>
+                </a>
+                <a href="carrito.html" class="h-action h-action--mobile-hide" aria-label="Carrito" style="position:relative">
+                    <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                    <span class="cart-badge">1</span>
+                </a>
+                <button class="h-action h-action--mobile-hide" onclick="toggleTheme()" aria-label="Cambiar tema">
+                    <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+    <div class="secondary-bar">
+        <div class="secondary-inner">
+            <div class="sec-left">
+                <a href="#">
+                    <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    Monterrey, 64349
+                </a>
+                <span>Sam's Club Cumbres, Mty</span>
+            </div>
+            <div class="sec-links">
+                <a href="#">Cuponera</a>
+                <a href="#">Hazte Socio</a>
+                <a href="faq.html">Ayuda</a>
+                <a href="#">Socio de Negocio</a>
+                <a href="#">Member's Mark</a>
+                <a href="#">Facturar</a>
+                <a href="#">Encuentra tu Club</a>
+            </div>
+        </div>
+    </div>
+    <main id="main">
+        <div class="container">
+            <div class="cart-page">
+                <div class="cart-header">
+                    <div>
+                        <span class="product-badge">Carrito de compras</span>
+                        <h1 class="cart-title">Tu carrito</h1>
+                        <p class="cart-subtitle">Revisa los artículos seleccionados y confirma tu pedido antes de pagar.</p>
+                    </div>
+                    <div class="cart-actions">
+                        <a href="busqueda.html" class="add-btn">Seguir comprando</a>
+                    </div>
+                </div>
+                <div class="cart-grid">
+                    <div class="cart-items">
+                        <article class="cart-item" data-unit-price="19999">
+                            <div class="cart-item__image">
+                                <img src="/Images/tv.jpg" alt="Samsung Smart TV 55 pulgadas">
+                            </div>
+                            <div class="cart-item__details">
+                                <p class="cart-item__name">Samsung Smart TV 55'' QLED 4K</p>
+                                <div class="cart-item__meta">SKU TV-Q55-2026 - 1 año de garantía</div>
+                                <div class="cart-item__qty">
+                                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Disminuir cantidad">-</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn" data-action="increase" aria-label="Aumentar cantidad">+</button>
+                                </div>
+                                <div class="cart-item__price" data-unit-price="19999">$19,999</div>
+                            </div>
+                        </article>
+                    </div>
+                    <aside class="cart-summary">
+                        <h2>Resumen del pedido</h2>
+                        <div class="cart-summary__line">
+                            <span>Subtotal</span>
+                            <strong id="summary-subtotal">$20,498</strong>
+                        </div>
+                        <div class="cart-summary__line">
+                            <span>Envío</span>
+                            <strong>Gratis</strong>
+                        </div>
+                        <div class="cart-summary__line cart-summary__discount">
+                            <span>Descuento</span>
+                            <strong id="summary-discount" data-discount="1000">-$1,000</strong>
+                        </div>
+                        <div class="cart-summary__total">
+                            <span>Total estimado</span>
+                            <strong id="summary-total">$19,498</strong>
+                        </div>
+                        <a href="#" class="cart-summary__btn">Ir a pagar</a>
+                        <p class="cart-note">12 MSI con tarjeta participante - Envío gratis en compras superiores a $2,000.</p>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Sam's Club</h3>
+                    <a href="#">Sobre nosotros</a><a href="#">Trabaja con nosotros</a>
+                    <a href="#">Responsabilidad social</a><a href="#">Aviso de privacidad</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Compras</h3>
+                    <a href="#">Membresías</a><a href="#">Ofertas</a>
+                    <a href="#">Catálogo digital</a><a href="#">Tarjeta de regalo</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Ayuda</h3>
+                    <a href="faq.html">Preguntas frecuentes</a><a href="#">Devoluciones</a>
+                    <a href="#">Rastrear pedido</a><a href="#">Contacto</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Síguenos</h3>
+                    <a href="#">Facebook</a><a href="#">Instagram</a>
+                    <a href="#">X (Twitter)</a><a href="#">YouTube</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                Sam's Club Mexico (pagina no oficial) | FCFM UANL | Juan Farias & Marco Sánchez
+            </div>
+        </div>
+    </footer>
+    <nav class="bottom-nav" aria-label="Navegación rápida">
+        <a href="../index.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Inicio</span></a>
+        <a href="busqueda.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span>Buscar</span></a>
+        <a href="carrito.html" class="bnav-item active"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span>Carrito</span></a>
+        <a href="login.html" class="bnav-item"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>Cuenta</span></a>
+    </nav>
+    <nav class="mobile-menu"><div class="mm-head"><strong>¡Hola, Socio!</strong><span>Inicia sesión para ver tus beneficios</span></div>
+        <div class="mm-section"><a href="login.html" class="mm-item">Iniciar Sesion</a><a href="#" class="mm-item">Registrarse</a></div>
+        <div class="mm-section"><a href="busqueda.html" class="mm-item">Electronica</a><a href="busqueda.html" class="mm-item">Hogar</a><a href="busqueda.html" class="mm-item">Alimentos</a><a href="busqueda.html" class="mm-item">Ropa</a><a href="busqueda.html" class="mm-item">Farmacia</a></div>
+        <div class="mm-section"><a href="#" class="mm-item" onclick="toggleTheme();toggleMenu();">Modo Oscuro</a><a href="#" class="mm-item" onclick="toggleA11y();toggleMenu();">Accesibilidad</a></div>
+    </nav>
+<!-- ===== ACCESSIBILITY PANEL ===== -->
+    <aside class="a11y-panel" role="dialog" aria-label="Accesibilidad">
+      <div class="a11y-head"><h2>Accesibilidad</h2><button class="a11y-close" onclick="toggleA11y()">X</button></div>
+      <div class="a11y-group"><div class="a11y-label">Apariencia</div>
+        <div class="toggle" data-tog="theme" onclick="toggleTheme()" role="switch" tabindex="0"><span class="toggle__text">Modo oscuro</span><div class="toggle__track"></div></div>
+      </div>
+      <div class="a11y-group"><div class="a11y-label">Tamaño de texto</div>
+        <div class="a11y-range"><input type="range" id="font-range" min="90" max="150" step="10" value="100" oninput="updateFont(this.value)" aria-label="Tamaño de texto">
+        <div class="a11y-range__vals"><span>90%</span><span id="font-val">100%</span><span>150%</span></div></div>
+      </div>
+      <div class="a11y-group"><div class="a11y-label">Contraste</div>
+        <div class="toggle" data-tog="contrast" onclick="toggleContrast()" role="switch" tabindex="0"><span class="toggle__text">Alto contraste</span><div class="toggle__track"></div></div>
+      </div>
+      <div class="a11y-group"><div class="a11y-label">Color</div>
+        <div class="toggle" data-tog="gray" onclick="toggleGray()" role="switch" tabindex="0"><span class="toggle__text">Blanco y negro</span><div class="toggle__track"></div></div>
+      </div>
+      <div class="a11y-group"><div class="a11y-label">Espaciado</div>
+        <div style="display:flex;gap:6px;">
+          <button onclick="setSpacing('normal')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Normal</button>
+          <button onclick="setSpacing('wide')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Amplio</button>
+          <button onclick="setSpacing('wider')" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:0.75rem;">Muy amplio</button>
+        </div>
+      </div>
+      <button onclick="resetA11y()" style="width:100%;padding:10px;background:var(--bg-gray);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:0.8125rem;font-weight:600;margin-top:16px;cursor:pointer;">Restablecer todo</button>
+    </aside>
+
+    <button class="a11y-fab" onclick="toggleA11y()" aria-label="Abrir configuración de accesibilidad">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
+    </button>
+
+    <div class="overlay" onclick="closePanels()"></div>
+    <script src="../js/main.js"></script>
+    <script>
+        const formatPrice = (value) => new Intl.NumberFormat('es-MX', {
+            style: 'currency',
+            currency: 'MXN',
+            maximumFractionDigits: 0
+        }).format(value);
+
+        function updateCartTotals() {
+            const items = document.querySelectorAll('.cart-item');
+            let subtotal = 0;
+            let totalQty = 0;
+
+            items.forEach(item => {
+                const unitPrice = Number(item.dataset.unitPrice || 0);
+                const qtyEl = item.querySelector('.qty-value');
+                let qty = Number(qtyEl?.textContent || 1);
+                qty = Math.max(1, qty);
+                const lineTotal = unitPrice * qty;
+                subtotal += lineTotal;
+                totalQty += qty;
+                const priceEl = item.querySelector('.cart-item__price');
+                if (priceEl) priceEl.textContent = formatPrice(lineTotal);
+            });
+
+            const discountEl = document.querySelector('#summary-discount');
+            const discountValue = Number(discountEl?.dataset.discount || 0);
+            const total = Math.max(0, subtotal - discountValue);
+
+            const subtotalEl = document.querySelector('#summary-subtotal');
+            const totalEl = document.querySelector('#summary-total');
+            if (subtotalEl) subtotalEl.textContent = formatPrice(subtotal);
+            if (totalEl) totalEl.textContent = formatPrice(total);
+
+            const badge = document.querySelector('.cart-badge');
+            if (badge) badge.textContent = totalQty;
+        }
+
+        function handleQtyButton(event) {
+            const button = event.currentTarget;
+            const action = button.dataset.action;
+            const item = button.closest('.cart-item');
+            if (!item) return;
+
+            const qtyEl = item.querySelector('.qty-value');
+            let qty = Number(qtyEl?.textContent || 1);
+
+            if (action === 'decrease' && qty > 1) {
+                qty -= 1;
+            } else if (action === 'increase') {
+                qty += 1;
+            }
+
+            if (qtyEl) qtyEl.textContent = qty;
+            updateCartTotals();
+        }
+
+        document.querySelectorAll('.qty-btn').forEach(button => {
+            button.addEventListener('click', handleQtyButton);
+        });
+
+        updateCartTotals();
+    </script>
+</body>
+</html>
